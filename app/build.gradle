@@ -34,7 +34,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'io.github.imecuadorian.logicgame.App'
+    mainClass = 'io.github.imecuadorian.logicgame.views.PrincipalForm'
 }
 
 tasks.named('test') {
