@@ -5,6 +5,8 @@
  */
 package io.github.imecuadorian.logicgame.views;
 
+import io.github.imecuadorian.logicgame.database.Database;
+import io.github.imecuadorian.logicgame.database.MySQL;
 import io.github.imecuadorian.logicgame.utilities.TextPrompt;
 
 /**
@@ -16,8 +18,12 @@ public class LoginView
 	/**
 	 * Creates new form LoginView
 	 */
+
+	private final Database database = new MySQL();
+
 	public LoginView() {
 		initComponents();
+		database.setup();
 		loadPlaceHolders();
 	}
 
