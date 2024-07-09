@@ -27,4 +27,8 @@ public class DeductiveQuestionController {
 		deductiveQuestionService.delete(id);
 	}
 
+	public int getSize() {
+		return deductiveQuestionService.getAll().size();
+	}
+
 }
