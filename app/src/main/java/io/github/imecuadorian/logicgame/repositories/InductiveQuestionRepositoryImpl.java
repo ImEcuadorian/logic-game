@@ -20,8 +20,8 @@ public class InductiveQuestionRepositoryImpl
 	private final String GET_QUERY = "SELECT * FROM " + TABLE_NAME + " WHERE id = ?";
 
 	private final String SAVE_QUERY = "INSERT_INTO " + TABLE_NAME + " (first_observation, " +
-	                                  "second_observation,conclusion , options " +
-	                                  " correct_option) VALUES(?,?,?,?,?)";
+	                                  "second_observation,thrid_observation, conclusion , options " +
+	                                  " correct_option) VALUES(?, ?, ?, ?, ?, ?)";
 
 	private final String DELETE_QUERY = "DELETE * FROM " + TABLE_NAME + " WHERE id = ?";
 
@@ -60,6 +60,7 @@ public class InductiveQuestionRepositoryImpl
 		inductiveQuestion.setId(resultSet.getInt("id"));
 		inductiveQuestion.setFirstObservation(resultSet.getString("first_observation"));
 		inductiveQuestion.setSecondObservation(resultSet.getString("second_observation"));
+		inductiveQuestion.setThirdObservation(resultSet.getString("third_observation"));
 		inductiveQuestion.setConclusion(resultSet.getString("conclusion"));
 		inductiveQuestion.setOptions(resultSet.getString("options"));
 		inductiveQuestion.setCorrectOption(resultSet.getString("correct_option"));
@@ -89,9 +90,10 @@ public class InductiveQuestionRepositoryImpl
 				                    .prepareStatement(SAVE_QUERY);
 			preparedStatement.setString(1, entity.getFirstObservation());
 			preparedStatement.setString(2, entity.getSecondObservation());
-			preparedStatement.setString(3, entity.getConclusion());
-			preparedStatement.setString(4, entity.getOptions());
-			preparedStatement.setString(5, entity.getCorrectOption());
+			preparedStatement.setString(3, entity.getThirdObservation());
+			preparedStatement.setString(4, entity.getConclusion());
+			preparedStatement.setString(5, entity.getOptions());
+			preparedStatement.setString(6, entity.getCorrectOption());
 			return entity;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
