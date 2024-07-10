@@ -68,7 +68,6 @@ public class LoginView
         });
 
         jLabel1.setFont(new java.awt.Font("Roboto Condensed", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/login_blue_icon_96px.png"))); // NOI18N
         jLabel1.setText("Bienvenido");
