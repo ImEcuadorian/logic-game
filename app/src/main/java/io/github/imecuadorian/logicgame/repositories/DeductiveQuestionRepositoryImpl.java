@@ -3,6 +3,7 @@ package io.github.imecuadorian.logicgame.repositories;
 import io.github.imecuadorian.logicgame.database.Database;
 import io.github.imecuadorian.logicgame.model.DeductiveQuestion;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,6 +30,8 @@ public class DeductiveQuestionRepositoryImpl
 	private ResultSet resultSet;
 
 	private Statement statement;
+
+	private PreparedStatement preparedStatement;
 
 	public DeductiveQuestionRepositoryImpl(final Database database) { this.database = database; }
 
@@ -79,9 +82,15 @@ public class DeductiveQuestionRepositoryImpl
 	@Override
 	public DeductiveQuestion save(final DeductiveQuestion entity) {
 		try {
-			statement = database.getConnection()
-				            .createStatement();
-			statement.executeUpdate(SAVE_QUERY);
+			preparedStatement = database.getConnection()
+				                 .prepareStatement(SAVE_QUERY);
+			preparedStatement.setString(1, entity.getFirstPremise());
+			preparedStatement.setString(2, entity.getSecondPremise());
+			preparedStatement.setString(3, entity.getConclusion());
+			preparedStatement.setString(4, entity.getOptions());
+			preparedStatement.setString(5, entity.getCorrectOption());
+			preparedStatement.setString(6, entity.getExplanation());
+			preparedStatement.executeUpdate();
 			return entity;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -91,9 +100,9 @@ public class DeductiveQuestionRepositoryImpl
 	@Override
 	public void delete(final Integer id) {
 		try {
-			statement = database.getConnection()
-				            .createStatement();
-			statement.executeUpdate(DELETE_QUERY);
+			preparedStatement = database.getConnection()
+				                 .prepareStatement(DELETE_QUERY);
+			preparedStatement.setInt(1, id);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

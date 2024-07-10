@@ -9,7 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 public class DeductiveQuestionServiceImpl implements DeductiveQuestionService {
 
-	private final Repository deductiveQuestionRepository;
+	private final Repository<DeductiveQuestion, Integer> deductiveQuestionRepository;
 
 	@Override
 	public List<DeductiveQuestion> getAll() {
@@ -18,12 +18,12 @@ public class DeductiveQuestionServiceImpl implements DeductiveQuestionService {
 
 	@Override
 	public DeductiveQuestion get(Integer id) {
-		return (DeductiveQuestion) deductiveQuestionRepository.get(id);
+		return deductiveQuestionRepository.get(id);
 	}
 
 	@Override
 	public DeductiveQuestion save(DeductiveQuestion entity) {
-		return (DeductiveQuestion) deductiveQuestionRepository.save(entity);
+		return deductiveQuestionRepository.save(entity);
 	}
 
 	@Override
