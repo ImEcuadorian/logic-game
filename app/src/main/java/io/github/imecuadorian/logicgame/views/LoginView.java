@@ -11,6 +11,8 @@ import io.github.imecuadorian.logicgame.repositories.DeductiveQuestionRepository
 import io.github.imecuadorian.logicgame.repositories.Repository;
 import io.github.imecuadorian.logicgame.utilities.TextPrompt;
 
+import javax.swing.*;
+
 /**
  * @author lab
  */
@@ -42,11 +44,15 @@ public class LoginView
         startButton = new javax.swing.JButton();
         usernameTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setResizable(false);
 
+        startButton.setBackground(new java.awt.Color(0, 153, 0));
+        startButton.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        startButton.setForeground(new java.awt.Color(255, 255, 255));
         startButton.setText("JUGAR");
         startButton.setToolTipText("");
         startButton.addActionListener(new java.awt.event.ActionListener() {
@@ -55,43 +61,76 @@ public class LoginView
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/login_icon_96px.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        usernameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                usernameTextFieldKeyTyped(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Roboto Condensed", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/login_blue_icon_96px.png"))); // NOI18N
+        jLabel1.setText("Bienvenido");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(startButton, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                    .addComponent(usernameTextField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
                 .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(66, 66, 66))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void usernameTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameTextFieldKeyTyped
+				if (usernameTextField.getText().length() >= 10) {
+					evt.consume();
+				}
+        char c = evt.getKeyChar();
+				if(Character.isLetter(c) || Character.isDigit(c)) {
+					usernameTextField.setEditable(true);
+					return;
+				}
+				evt.consume();
+
+    }//GEN-LAST:event_usernameTextFieldKeyTyped
+
 	private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         // :event_startButtonActionPerformed
-		// TODO add your handling code here:
+		if (usernameTextField.getText().isBlank()) {
+			JOptionPane.showMessageDialog(this, "Por favor ingrese su nombre de usuario");
+			return;
+		}
 		PrincipalForm principalForm = new PrincipalForm(deductiveQuestionRepository);
 		principalForm.setVisible(true);
 		this.dispose();
@@ -145,6 +184,7 @@ public class LoginView
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton startButton;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
