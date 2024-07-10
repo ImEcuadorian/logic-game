@@ -1,7 +1,7 @@
 package io.github.imecuadorian.logicgame.services;
 
 import io.github.imecuadorian.logicgame.model.DeductiveQuestion;
-import io.github.imecuadorian.logicgame.repositories.DeductiveQuestionRepository;
+import io.github.imecuadorian.logicgame.repositories.Repository;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 public class DeductiveQuestionServiceImpl implements DeductiveQuestionService {
 
-	private final DeductiveQuestionRepository deductiveQuestionRepository;
+	private final Repository deductiveQuestionRepository;
 
 	@Override
 	public List<DeductiveQuestion> getAll() {

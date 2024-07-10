@@ -14,7 +14,7 @@ public class ShuffleQuestion {
 	}
 
 	public static String shuffleOptions(String options) {
-		String[] optionsArray = options.split(",");
+		String[] optionsArray = options.split("-");
 		List<String> optionsList = new ArrayList<>(List.of(optionsArray));
 		Collections.shuffle(optionsList);
 		return String.join(",", optionsList);

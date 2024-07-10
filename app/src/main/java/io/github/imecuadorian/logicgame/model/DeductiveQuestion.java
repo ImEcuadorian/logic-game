@@ -2,10 +2,8 @@ package io.github.imecuadorian.logicgame.model;
 
 import lombok.Data;
 
-import java.util.List;
-
 @Data
-public class DeductiveQuestion {
+public class DeductiveQuestion implements Model {
 
 	private int id;
 	private String firstPremise;

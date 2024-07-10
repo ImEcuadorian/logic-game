@@ -23,10 +23,11 @@ public class MySQL
 	@Override
 	public void setup() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = java.sql.DriverManager.getConnection(URL, USER, PASSWORD);
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Error while setting up MySQL database: ", e);
+			System.exit(1);
 		}
 	}
 }

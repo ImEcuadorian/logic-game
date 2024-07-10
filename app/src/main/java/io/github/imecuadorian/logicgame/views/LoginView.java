@@ -7,6 +7,8 @@ package io.github.imecuadorian.logicgame.views;
 
 import io.github.imecuadorian.logicgame.database.Database;
 import io.github.imecuadorian.logicgame.database.MySQL;
+import io.github.imecuadorian.logicgame.repositories.DeductiveQuestionRepositoryImpl;
+import io.github.imecuadorian.logicgame.repositories.Repository;
 import io.github.imecuadorian.logicgame.utilities.TextPrompt;
 
 /**
@@ -20,10 +22,12 @@ public class LoginView
 	 */
 
 	private final Database database = new MySQL();
+	private final Repository deductiveQuestionRepository;
 
 	public LoginView() {
 		initComponents();
 		database.setup();
+		deductiveQuestionRepository = new DeductiveQuestionRepositoryImpl(database);
 		loadPlaceHolders();
 	}
 
@@ -88,6 +92,9 @@ public class LoginView
 	private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         // :event_startButtonActionPerformed
 		// TODO add your handling code here:
+		PrincipalForm principalForm = new PrincipalForm(deductiveQuestionRepository);
+		principalForm.setVisible(true);
+		this.dispose();
 	}                                           
 
 	private void loadPlaceHolders() {

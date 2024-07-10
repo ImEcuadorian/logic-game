@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeductiveQuestionRepositoryImpl
-	implements DeductiveQuestionRepository<DeductiveQuestion, Integer> {
+	implements Repository<DeductiveQuestion, Integer> {
 
 	private final String TABLE_NAME = "deductive_questions";
 
@@ -40,20 +40,25 @@ public class DeductiveQuestionRepositoryImpl
 				            .createStatement();
 			resultSet = statement.executeQuery(GET_ALL_QUERY);
 			while (resultSet.next()) {
-				DeductiveQuestion deductiveQuestion = new DeductiveQuestion();
-				deductiveQuestion.setId(resultSet.getInt("id"));
-				deductiveQuestion.setFirstPremise(resultSet.getString("first_premise"));
-				deductiveQuestion.setSecondPremise(resultSet.getString("second_premise"));
-				deductiveQuestion.setConclusion(resultSet.getString("conclusion"));
-				deductiveQuestion.setOptions(resultSet.getString("options"));
-				deductiveQuestion.setCorrectOption(resultSet.getString("correct_option"));
-				deductiveQuestion.setExplanation(resultSet.getString("explanation"));
+				DeductiveQuestion deductiveQuestion = getDeductiveQuestion();
 				deductiveQuestions.add(deductiveQuestion);
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 		return deductiveQuestions;
+	}
+
+	private DeductiveQuestion getDeductiveQuestion() throws SQLException {
+		DeductiveQuestion deductiveQuestion = new DeductiveQuestion();
+		deductiveQuestion.setId(resultSet.getInt("id"));
+		deductiveQuestion.setFirstPremise(resultSet.getString("first_premise"));
+		deductiveQuestion.setSecondPremise(resultSet.getString("second_premise"));
+		deductiveQuestion.setConclusion(resultSet.getString("conclusion"));
+		deductiveQuestion.setOptions(resultSet.getString("options"));
+		deductiveQuestion.setCorrectOption(resultSet.getString("correct_option"));
+		deductiveQuestion.setExplanation(resultSet.getString("explanation"));
+		return deductiveQuestion;
 	}
 
 	@Override
@@ -63,15 +68,7 @@ public class DeductiveQuestionRepositoryImpl
 				            .createStatement();
 			resultSet = statement.executeQuery(GET_QUERY);
 			if (resultSet.next()) {
-				DeductiveQuestion deductiveQuestion = new DeductiveQuestion();
-				deductiveQuestion.setId(resultSet.getInt("id"));
-				deductiveQuestion.setFirstPremise(resultSet.getString("first_premise"));
-				deductiveQuestion.setSecondPremise(resultSet.getString("second_premise"));
-				deductiveQuestion.setConclusion(resultSet.getString("conclusion"));
-				deductiveQuestion.setOptions(resultSet.getString("options"));
-				deductiveQuestion.setCorrectOption(resultSet.getString("correct_option"));
-				deductiveQuestion.setExplanation(resultSet.getString("explanation"));
-				return deductiveQuestion;
+				return getDeductiveQuestion();
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

@@ -37,6 +37,7 @@ public class QuestionView
                 new DeductiveQuestionController(deductiveQuestionService);
 		this.questions = ShuffleQuestion.shuffleQuestions(deductiveQuestionController.getAll());
 		this.maxQuestions = deductiveQuestionController.getSize();
+		loadQuestion();
 	}
 
 	/**
@@ -175,12 +176,11 @@ public class QuestionView
 	}//GEN-LAST:event_nextQuestionButtonActionPerformed
 
 	private void loadQuestion() {
-		DeductiveQuestion question = questions.get(0);
+		DeductiveQuestion question = questions.getFirst();
 		firstPremiseLabel.setText(question.getFirstPremise());
 		secondPremiseLabel.setText(question.getSecondPremise());
 		thirdPremiseLabel.setText(question.getConclusion());
-		String[] options = question.getOptions()
-			                   .split(",");
+		String[] options = ShuffleQuestion.shuffleOptions(question.getOptions()).split(",");
 		for (int i = 0; i < options.length; i++) {
 			switch (i) {
 				case 0:
