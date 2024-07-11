@@ -10,6 +10,7 @@ import io.github.imecuadorian.logicgame.helpers.ShuffleQuestion;
 import io.github.imecuadorian.logicgame.model.DeductiveQuestion;
 import io.github.imecuadorian.logicgame.services.DeductiveQuestionService;
 
+import javax.swing.*;
 import java.util.List;
 
 /**
@@ -34,10 +35,17 @@ public class QuestionView
 		super(parent, modal);
 		initComponents();
 		this.deductiveQuestionController =
-                new DeductiveQuestionController(deductiveQuestionService);
-		this.questions = (List<DeductiveQuestion>) ShuffleQuestion.shuffleQuestions(deductiveQuestionController.getAll());
+			new DeductiveQuestionController(deductiveQuestionService);
+		this.questions = (List<DeductiveQuestion>) ShuffleQuestion.shuffleQuestions(
+			deductiveQuestionController.getAll());
 		this.maxQuestions = deductiveQuestionController.getSize();
-		loadQuestion();
+
+		if (maxQuestions == 0) {
+			JOptionPane.showMessageDialog(this, "There are no questions available");
+			this.dispose();
+		} else {
+			loadQuestion();
+		}
 	}
 
 	/**
@@ -105,10 +113,8 @@ public class QuestionView
 						                    .addComponent(thirdOptionRadioButton)
 						                    .addComponent(secondOptionRadioButton)
 						                    .addComponent(firstOptionRadioButton))
-					          .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
-                                               Short.MAX_VALUE))
-				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                          layout.createSequentialGroup()
+					          .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
 					                                                      .addContainerGap(
 						                                                      javax.swing.GroupLayout.DEFAULT_SIZE,
 						                                                      Short.MAX_VALUE)
@@ -163,24 +169,55 @@ public class QuestionView
 		);
 
 		pack();
+		setLocationRelativeTo(null);
 	}// </editor-fold>//GEN-END:initComponents
 
 	private void nextQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
-        // :event_nextQuestionButtonActionPerformed
+		// :event_nextQuestionButtonActionPerformed
+
+		if (!firstOptionRadioButton.isSelected() && !secondOptionRadioButton.isSelected() &&
+		    !thirdOptionRadioButton.isSelected()) {
+			JOptionPane.showMessageDialog(this, "Please select an option");
+			return;
+		}
+
+		String selectedOption = "";
+		if (firstOptionRadioButton.isSelected()) {
+			selectedOption = firstOptionRadioButton.getText();
+		} else if (secondOptionRadioButton.isSelected()) {
+			selectedOption = secondOptionRadioButton.getText();
+		} else if (thirdOptionRadioButton.isSelected()) {
+			selectedOption = thirdOptionRadioButton.getText();
+		}
+		DeductiveQuestion question = questions.getFirst();
+
+		if (question.getCorrectOption()
+			    .equals(selectedOption)) {
+			JOptionPane.showMessageDialog(this, "Correct!");
+			resetOptions();
+		} else {
+			JOptionPane.showMessageDialog(this, "Incorrect!");
+			JOptionPane.showMessageDialog(this, "Explanation: " + question.getExplanation());
+			resetOptions();
+		}
+
 		questions.removeFirst();
 		if (questions.isEmpty()) {
 			this.dispose();
 		} else {
+			resetOptions();
 			loadQuestion();
 		}
-	}//GEN-LAST:event_nextQuestionButtonActionPerformed
+	}
 
-	private void loadQuestion() {
+	private DeductiveQuestion loadQuestion() {
+		resetOptions();
 		DeductiveQuestion question = questions.getFirst();
 		firstPremiseLabel.setText(question.getFirstPremise());
 		secondPremiseLabel.setText(question.getSecondPremise());
 		thirdPremiseLabel.setText(question.getConclusion());
-		String[] options = ShuffleQuestion.shuffleOptions(question.getOptions()).split(",");
+		String[] options = ShuffleQuestion.shuffleOptions(question.getOptions())
+			                   .split(",");
 		for (int i = 0; i < options.length; i++) {
 			switch (i) {
 				case 0:
@@ -194,6 +231,13 @@ public class QuestionView
 					break;
 			}
 		}
+		return question;
+	}
+
+	private void resetOptions() {
+		firstOptionRadioButton.setSelected(false);
+		secondOptionRadioButton.setSelected(false);
+		thirdOptionRadioButton.setSelected(false);
 	}
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
@@ -207,3 +251,4 @@ public class QuestionView
 	private javax.swing.JLabel thirdPremiseLabel;
 	// End of variables declaration//GEN-END:variables
 }
+

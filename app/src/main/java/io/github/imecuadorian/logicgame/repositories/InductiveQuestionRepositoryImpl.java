@@ -19,11 +19,11 @@ public class InductiveQuestionRepositoryImpl
 
 	private final String GET_QUERY = "SELECT * FROM " + TABLE_NAME + " WHERE id = ?";
 
-	private final String SAVE_QUERY = "INSERT_INTO " + TABLE_NAME + " (first_observation, " +
-	                                  "second_observation,thrid_observation, conclusion , options " +
+	private final String SAVE_QUERY = "INSERT INTO " + TABLE_NAME + " (first_observation, " +
+	                                  "second_observation,thrid_observation, conclusion , options, " +
 	                                  " correct_option) VALUES(?, ?, ?, ?, ?, ?)";
 
-	private final String DELETE_QUERY = "DELETE * FROM " + TABLE_NAME + " WHERE id = ?";
+	private final String DELETE_QUERY = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
 
 	private final Database database;
 

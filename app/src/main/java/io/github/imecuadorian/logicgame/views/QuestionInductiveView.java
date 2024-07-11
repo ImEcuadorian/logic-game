@@ -14,6 +14,7 @@ import io.github.imecuadorian.logicgame.services.DeductiveQuestionService;
 import io.github.imecuadorian.logicgame.services.InductiveQuestionService;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * @author Hugo Saldarriaga
@@ -198,7 +199,9 @@ public class QuestionInductiveView
 	}                                                  
 
 	private void loadQuestion() {
+		try {
 		InductiveQuestion question = questions.getFirst();
+
 		firstObservation.setText(question.getFirstObservation());
 		secondObservationLabel.setText(question.getSecondObservation());
 		thirdObservationLabel.setText(question.getThirdObservation());
@@ -215,6 +218,9 @@ public class QuestionInductiveView
 					thirdOptionRadioButton.setText(options[i]);
 					break;
 			}
+		}
+		}catch (NoSuchElementException e){
+			System.err.println("No more questions");
 		}
 	}
 
