@@ -30,27 +30,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         initComponents();
 				this.deductiveQuestionService = new DeductiveQuestionServiceImpl(deductiveQuestionRepository);
 				this.inductiveQuestionService =
-					new InductiveQuestionServiceImpl(inductiveQuestionRepository) {
-					@Override
-					public List<InductiveQuestion> getAll() {
-						return List.of();
-					}
-
-					@Override
-					public InductiveQuestion get(final Integer id) {
-						return null;
-					}
-
-					@Override
-					public InductiveQuestion save(final InductiveQuestion entity) {
-						return null;
-					}
-
-					@Override
-					public void delete(final Integer id) {
-
-					}
-				};
+					new InductiveQuestionServiceImpl(inductiveQuestionRepository);
     }
 
     /**
@@ -63,11 +43,11 @@ public class PrincipalForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel5 = new javax.swing.JPanel();
-        playDeductiveButton1 = new javax.swing.JButton();
+        playDeductiveButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        playDeductiveButton2 = new javax.swing.JButton();
+        playInductiveButton = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         playerName = new javax.swing.JLabel();
@@ -93,14 +73,13 @@ public class PrincipalForm extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(230, 35, 5));
 
-        playDeductiveButton1.setBackground(new java.awt.Color(230, 163, 67));
-        playDeductiveButton1.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        playDeductiveButton1.setForeground(new java.awt.Color(0, 0, 0));
-        playDeductiveButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icon_play_deductive_70px.png"))); // NOI18N
-        playDeductiveButton1.setToolTipText("Seleccionar la respuesta correcta");
-        playDeductiveButton1.addActionListener(new java.awt.event.ActionListener() {
+        playDeductiveButton.setBackground(new java.awt.Color(230, 163, 67));
+        playDeductiveButton.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        playDeductiveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icon_play_deductive_70px.png"))); // NOI18N
+        playDeductiveButton.setToolTipText("Seleccionar la respuesta correcta");
+        playDeductiveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                playDeductiveButton1ActionPerformed(evt);
+                playDeductiveButtonActionPerformed(evt);
             }
         });
 
@@ -114,7 +93,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(playDeductiveButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(playDeductiveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(jLabel8)
@@ -133,19 +112,18 @@ public class PrincipalForm extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(35, 35, 35)))
-                .addComponent(playDeductiveButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(playDeductiveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel6.setBackground(new java.awt.Color(69, 66, 227));
 
-        playDeductiveButton2.setBackground(new java.awt.Color(120, 66, 226));
-        playDeductiveButton2.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        playDeductiveButton2.setForeground(new java.awt.Color(0, 0, 0));
-        playDeductiveButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icon_play_inductive_70px.png"))); // NOI18N
-        playDeductiveButton2.setToolTipText("Apareceran opciones y se debera seleccionar la respuesta correcta");
-        playDeductiveButton2.addActionListener(new java.awt.event.ActionListener() {
+        playInductiveButton.setBackground(new java.awt.Color(120, 66, 226));
+        playInductiveButton.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        playInductiveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icon_play_inductive_70px.png"))); // NOI18N
+        playInductiveButton.setToolTipText("Apareceran opciones y se debera seleccionar la respuesta correcta");
+        playInductiveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                playDeductiveButton2ActionPerformed(evt);
+                playInductiveButtonActionPerformed(evt);
             }
         });
 
@@ -160,7 +138,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(playDeductiveButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(playInductiveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel10)
@@ -179,7 +157,7 @@ public class PrincipalForm extends javax.swing.JFrame {
                         .addGap(59, 59, 59)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(playDeductiveButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(playInductiveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         playerName.setText("NOMBRE JUGADOR : ");
@@ -290,13 +268,17 @@ public class PrincipalForm extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
-    private void playDeductiveButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playDeductiveButton1ActionPerformed
+    private void playDeductiveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playDeductiveButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_playDeductiveButton1ActionPerformed
+	    QuestionView deductiveView = new QuestionView(this,true,deductiveQuestionService);
+			deductiveView.setVisible(true);
+    }//GEN-LAST:event_playDeductiveButtonActionPerformed
 
-    private void playDeductiveButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playDeductiveButton2ActionPerformed
+    private void playInductiveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playInductiveButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_playDeductiveButton2ActionPerformed
+	    QuestionInductiveView inductiveView = new QuestionInductiveView(this,true,inductiveQuestionService);
+			inductiveView.setVisible(true);
+    }//GEN-LAST:event_playInductiveButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LeatherBoard;
@@ -318,8 +300,8 @@ public class PrincipalForm extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;
-    private javax.swing.JButton playDeductiveButton1;
-    private javax.swing.JButton playDeductiveButton2;
+    private javax.swing.JButton playDeductiveButton;
+    private javax.swing.JButton playInductiveButton;
     private javax.swing.JLabel playerName;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
