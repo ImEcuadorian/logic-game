@@ -4,9 +4,15 @@
  */
 package io.github.imecuadorian.logicgame.views;
 
+import io.github.imecuadorian.logicgame.model.DeductiveQuestion;
+import io.github.imecuadorian.logicgame.model.InductiveQuestion;
 import io.github.imecuadorian.logicgame.repositories.Repository;
 import io.github.imecuadorian.logicgame.services.DeductiveQuestionService;
 import io.github.imecuadorian.logicgame.services.DeductiveQuestionServiceImpl;
+import io.github.imecuadorian.logicgame.services.InductiveQuestionService;
+import io.github.imecuadorian.logicgame.services.InductiveQuestionServiceImpl;
+
+import java.util.List;
 
 /**
  *
@@ -19,9 +25,32 @@ public class PrincipalForm extends javax.swing.JFrame {
      */
 
 		private final DeductiveQuestionService deductiveQuestionService;
-    public PrincipalForm(Repository deductiveQuestionRepository) {
+		private final InductiveQuestionService inductiveQuestionService;
+    public PrincipalForm(Repository<DeductiveQuestion,Integer> deductiveQuestionRepository,Repository<InductiveQuestion,Integer> inductiveQuestionRepository) {
         initComponents();
 				this.deductiveQuestionService = new DeductiveQuestionServiceImpl(deductiveQuestionRepository);
+				this.inductiveQuestionService =
+					new InductiveQuestionServiceImpl(inductiveQuestionRepository) {
+					@Override
+					public List<InductiveQuestion> getAll() {
+						return List.of();
+					}
+
+					@Override
+					public InductiveQuestion get(final Integer id) {
+						return null;
+					}
+
+					@Override
+					public InductiveQuestion save(final InductiveQuestion entity) {
+						return null;
+					}
+
+					@Override
+					public void delete(final Integer id) {
+
+					}
+				};
     }
 
     /**

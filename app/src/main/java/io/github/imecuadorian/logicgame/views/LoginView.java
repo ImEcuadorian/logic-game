@@ -7,7 +7,10 @@ package io.github.imecuadorian.logicgame.views;
 
 import io.github.imecuadorian.logicgame.database.Database;
 import io.github.imecuadorian.logicgame.database.MySQL;
+import io.github.imecuadorian.logicgame.model.DeductiveQuestion;
+import io.github.imecuadorian.logicgame.model.InductiveQuestion;
 import io.github.imecuadorian.logicgame.repositories.DeductiveQuestionRepositoryImpl;
+import io.github.imecuadorian.logicgame.repositories.InductiveQuestionRepositoryImpl;
 import io.github.imecuadorian.logicgame.repositories.Repository;
 import io.github.imecuadorian.logicgame.utilities.TextPrompt;
 
@@ -25,13 +28,15 @@ public class LoginView
 	 */
 
 	private final Database database = new MySQL();
-	private final Repository deductiveQuestionRepository;
+	private final Repository<DeductiveQuestion,Integer> deductiveQuestionRepository;
+	private final Repository<InductiveQuestion,Integer> inductiveQuestionRepository;
 
 
 	public LoginView() {
 		initComponents();
 		database.setup();
 		deductiveQuestionRepository = new DeductiveQuestionRepositoryImpl(database);
+		inductiveQuestionRepository = new InductiveQuestionRepositoryImpl(database);
 		loadPlaceHolders();
 	}
 
@@ -141,7 +146,7 @@ public class LoginView
 			JOptionPane.showMessageDialog(this, "Por favor ingrese su nombre de usuario");
 			return;
 		}
-		PrincipalForm principalForm = new PrincipalForm(deductiveQuestionRepository);
+		PrincipalForm principalForm = new PrincipalForm(deductiveQuestionRepository,inductiveQuestionRepository);
 		principalForm.setVisible(true);
 		this.dispose();
 	}                                           

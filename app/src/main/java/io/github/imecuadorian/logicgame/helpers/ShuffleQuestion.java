@@ -1,6 +1,7 @@
 package io.github.imecuadorian.logicgame.helpers;
 
 import io.github.imecuadorian.logicgame.model.DeductiveQuestion;
+import io.github.imecuadorian.logicgame.model.Model;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class ShuffleQuestion {
 
-	public static List<DeductiveQuestion> shuffleQuestions(List<DeductiveQuestion> questions) {
+	public static List<? extends Model> shuffleQuestions(List<? extends Model> questions) {
 		Collections.shuffle(questions);
 		return questions;
 	}

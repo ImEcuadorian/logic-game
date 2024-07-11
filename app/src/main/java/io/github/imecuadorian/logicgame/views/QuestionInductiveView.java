@@ -6,9 +6,12 @@
 package io.github.imecuadorian.logicgame.views;
 
 import io.github.imecuadorian.logicgame.controller.DeductiveQuestionController;
+import io.github.imecuadorian.logicgame.controller.InductiveQuestionController;
 import io.github.imecuadorian.logicgame.helpers.ShuffleQuestion;
 import io.github.imecuadorian.logicgame.model.DeductiveQuestion;
+import io.github.imecuadorian.logicgame.model.InductiveQuestion;
 import io.github.imecuadorian.logicgame.services.DeductiveQuestionService;
+import io.github.imecuadorian.logicgame.services.InductiveQuestionService;
 
 import java.util.List;
 
@@ -22,21 +25,21 @@ public class QuestionInductiveView
 	 * Creates new form QuestionView
 	 */
 
-	private final DeductiveQuestionController deductiveQuestionController;
-	private final List<DeductiveQuestion> questions;
+	private final InductiveQuestionController inductiveQuestionController;
+	private final List<InductiveQuestion> questions;
 	private final int maxQuestions;
 
 	public QuestionInductiveView(
 		java.awt.Frame parent,
 		boolean modal,
-		DeductiveQuestionService deductiveQuestionService
+		InductiveQuestionService inductiveQuestionService
 	) {
 		super(parent, modal);
 		initComponents();
-		this.deductiveQuestionController =
-                new DeductiveQuestionController(deductiveQuestionService);
-		this.questions = ShuffleQuestion.shuffleQuestions(deductiveQuestionController.getAll());
-		this.maxQuestions = deductiveQuestionController.getSize();
+		this.inductiveQuestionController =
+                new InductiveQuestionController(inductiveQuestionService);
+		this.questions = (List<InductiveQuestion>) ShuffleQuestion.shuffleQuestions(inductiveQuestionController.getAll());
+		this.maxQuestions = inductiveQuestionController.getSize();
 		loadQuestion();
 	}
 
@@ -49,8 +52,8 @@ public class QuestionInductiveView
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        secondPremiseLabel = new javax.swing.JLabel();
-        thirdPremiseLabel = new javax.swing.JLabel();
+        secondObservationLabel = new javax.swing.JLabel();
+        thirdObservationLabel = new javax.swing.JLabel();
         firstObservation = new javax.swing.JLabel();
         firstOptionRadioButton = new javax.swing.JRadioButton();
         secondOptionRadioButton = new javax.swing.JRadioButton();
@@ -65,9 +68,9 @@ public class QuestionInductiveView
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        secondPremiseLabel.setText("jLabel1");
+        secondObservationLabel.setText("jLabel1");
 
-        thirdPremiseLabel.setText("jLabel1");
+        thirdObservationLabel.setText("jLabel1");
 
         firstObservation.setText("jLabel1");
 
@@ -106,8 +109,8 @@ public class QuestionInductiveView
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(secondPremiseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(thirdPremiseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(secondObservationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(thirdObservationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(53, 53, 53)
@@ -155,9 +158,9 @@ public class QuestionInductiveView
                             .addComponent(liveLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(liveLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(87, 87, 87)
-                        .addComponent(secondPremiseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(secondObservationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(thirdPremiseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(thirdObservationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(114, 114, 114)
                         .addComponent(firstOptionRadioButton)
                         .addGap(78, 78, 78)
@@ -199,10 +202,10 @@ public class QuestionInductiveView
 	}                                                  
 
 	private void loadQuestion() {
-		DeductiveQuestion question = questions.getFirst();
-		firstObservation.setText(question.getFirstPremise());
-		secondPremiseLabel.setText(question.getSecondPremise());
-		thirdPremiseLabel.setText(question.getConclusion());
+		InductiveQuestion question = questions.getFirst();
+		firstObservation.setText(question.getFirstObservation());
+		secondObservationLabel.setText(question.getSecondObservation());
+		thirdObservationLabel.setText(question.getThirdObservation());
 		String[] options = ShuffleQuestion.shuffleOptions(question.getOptions()).split(",");
 		for (int i = 0; i < options.length; i++) {
 			switch (i) {
@@ -230,9 +233,9 @@ public class QuestionInductiveView
     private javax.swing.JLabel liveLabel3;
     private javax.swing.JLabel liveLabel4;
     private javax.swing.JButton nextQuestionButton;
+    private javax.swing.JLabel secondObservationLabel;
     private javax.swing.JRadioButton secondOptionRadioButton;
-    private javax.swing.JLabel secondPremiseLabel;
+    private javax.swing.JLabel thirdObservationLabel;
     private javax.swing.JRadioButton thirdOptionRadioButton;
-    private javax.swing.JLabel thirdPremiseLabel;
     // End of variables declaration//GEN-END:variables
 }

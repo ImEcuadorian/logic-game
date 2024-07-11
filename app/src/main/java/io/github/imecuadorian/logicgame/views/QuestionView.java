@@ -35,7 +35,7 @@ public class QuestionView
 		initComponents();
 		this.deductiveQuestionController =
                 new DeductiveQuestionController(deductiveQuestionService);
-		this.questions = ShuffleQuestion.shuffleQuestions(deductiveQuestionController.getAll());
+		this.questions = (List<DeductiveQuestion>) ShuffleQuestion.shuffleQuestions(deductiveQuestionController.getAll());
 		this.maxQuestions = deductiveQuestionController.getSize();
 		loadQuestion();
 	}
