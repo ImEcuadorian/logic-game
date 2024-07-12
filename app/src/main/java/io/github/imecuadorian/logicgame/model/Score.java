@@ -3,7 +3,7 @@ package io.github.imecuadorian.logicgame.model;
 import lombok.Data;
 
 @Data
-public class Score {
+public class Score implements Model {
 
 	private int id;
 

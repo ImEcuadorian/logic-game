@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class PlayerRepository implements Repository<Player, Integer> {
+public class PlayerRepository
+	implements Repository<Player, Integer> {
 
 	private final String TABLE_NAME = "players";
 
@@ -79,7 +80,7 @@ public class PlayerRepository implements Repository<Player, Integer> {
 	public Player save(final Player entity) {
 		try {
 			preparedStatement = database.getConnection()
-				                 .prepareStatement(SAVE_QUERY, Statement.RETURN_GENERATED_KEYS);
+				                    .prepareStatement(SAVE_QUERY, Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1, entity.getUsername());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -92,7 +93,7 @@ public class PlayerRepository implements Repository<Player, Integer> {
 	public void delete(final Integer id) {
 		try {
 			preparedStatement = database.getConnection()
-				                 .prepareStatement(DELETE_QUERY);
+				                    .prepareStatement(DELETE_QUERY);
 			preparedStatement.setInt(1, id);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -103,7 +104,8 @@ public class PlayerRepository implements Repository<Player, Integer> {
 		try {
 			statement = database.getConnection()
 				            .createStatement();
-			resultSet = statement.executeQuery("SELECT * FROM " + TABLE_NAME + " WHERE username = '" + username + "'");
+			resultSet = statement.executeQuery(
+				"SELECT * FROM " + TABLE_NAME + " WHERE username = '" + username + "'");
 			if (resultSet.next()) {
 				return Optional.of(getPlayer());
 			}
@@ -111,5 +113,25 @@ public class PlayerRepository implements Repository<Player, Integer> {
 			throw new RuntimeException(e);
 		}
 		return Optional.empty();
+	}
+
+	public Player getPlayerByPointsByTypeGame(String username, String typeGame) {
+		try {
+			String query =
+				"SELECT id, username, score_id FROM " + TABLE_NAME + " INNER JOIN scores ON scores" +
+				".id = scores.player_id INNER JOIN games ON scores.type_game_id = games.id WHERE " +
+                "username = '" +
+				username + "' AND type_game = '" + typeGame + "'";
+
+			statement = database.getConnection()
+				            .createStatement();
+			resultSet = statement.executeQuery("");
+			if (resultSet.next()) {
+				return getPlayer();
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return null;
 	}
 }

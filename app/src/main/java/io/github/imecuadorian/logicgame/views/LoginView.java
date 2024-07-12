@@ -9,9 +9,13 @@ import io.github.imecuadorian.logicgame.database.Database;
 import io.github.imecuadorian.logicgame.database.MySQL;
 import io.github.imecuadorian.logicgame.model.DeductiveQuestion;
 import io.github.imecuadorian.logicgame.model.InductiveQuestion;
+import io.github.imecuadorian.logicgame.model.Player;
 import io.github.imecuadorian.logicgame.repositories.DeductiveQuestionRepositoryImpl;
 import io.github.imecuadorian.logicgame.repositories.InductiveQuestionRepositoryImpl;
+import io.github.imecuadorian.logicgame.repositories.PlayerRepository;
 import io.github.imecuadorian.logicgame.repositories.Repository;
+import io.github.imecuadorian.logicgame.services.PlayerService;
+import io.github.imecuadorian.logicgame.services.PlayerServiceImpl;
 import io.github.imecuadorian.logicgame.utilities.TextPrompt;
 
 import javax.swing.*;
@@ -30,6 +34,9 @@ public class LoginView
 	private final Database database = new MySQL();
 	private final Repository<DeductiveQuestion,Integer> deductiveQuestionRepository;
 	private final Repository<InductiveQuestion,Integer> inductiveQuestionRepository;
+	private final Repository<Player, Integer> playerIntegerRepository;
+
+	private final PlayerService playerService;
 
 
 	public LoginView() {
@@ -37,6 +44,8 @@ public class LoginView
 		database.setup();
 		deductiveQuestionRepository = new DeductiveQuestionRepositoryImpl(database);
 		inductiveQuestionRepository = new InductiveQuestionRepositoryImpl(database);
+		playerIntegerRepository = new PlayerRepository(database);
+		playerService = new PlayerServiceImpl(playerIntegerRepository);
 		loadPlaceHolders();
 	}
 
@@ -146,7 +155,21 @@ public class LoginView
 			JOptionPane.showMessageDialog(this, "Por favor ingrese su nombre de usuario");
 			return;
 		}
-		PrincipalForm principalForm = new PrincipalForm(deductiveQuestionRepository,inductiveQuestionRepository);
+
+		String username = usernameTextField.getText();
+
+		Player player = playerService.getPlayerByUsername(username);
+
+		if (player.getId() == 0) {
+			player.setUsername(username);
+			playerService.save(player);
+		}
+
+
+
+
+		PrincipalForm principalForm = new PrincipalForm(deductiveQuestionRepository,
+		                                                inductiveQuestionRepository, playerService, player);
 		principalForm.setVisible(true);
 		this.dispose();
 	}                                           
