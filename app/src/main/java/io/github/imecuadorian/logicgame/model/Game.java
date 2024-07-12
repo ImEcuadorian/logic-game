@@ -7,6 +7,6 @@ public class Game {
 
 	private int id;
 
-	private TypeGame typeGame;
+	private String typeGame;
 
 }
