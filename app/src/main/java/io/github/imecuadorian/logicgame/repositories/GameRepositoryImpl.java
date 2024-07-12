@@ -20,7 +20,7 @@ public class GameRepositoryImpl
 	private final String GET_QUERY = "SELECT * FROM " + TABLE_NAME + " WHERE id = ?";
 
 	private final String SAVE_QUERY =
-		"INSERT INTO " + TABLE_NAME + " (typeGame) VALUES(?,?)";
+		"INSERT INTO " + TABLE_NAME + " (typeGame) VALUES(?)";
 
 	private final String DELETE_QUERY = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
 
