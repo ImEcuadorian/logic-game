@@ -28,38 +28,4 @@ public class GameServiceImpl implements GameService{
 				gameRepositoryImpl.delete(id);
 		}
 
-		@Override
-		public Game getGameByTypeGame(String typeGame) {
-				return gameRepositoryImpl.getGameByTypeGame(typeGame).orElse(new Game());
-		}
-
-		@Override
-		public void updateLevelByTypeGame(String typeGame, int level) {
-				gameRepositoryImpl.updateLevelByTypeGame(typeGame, level);
-		}
-
-		@Override
-		public void updateLevel(String typeGame, int level) {
-				gameRepositoryImpl.updateLevel(typeGame, level);
-		}
-
-		@Override
-		public void updateTypeGame(String typeGame) {
-				gameRepositoryImpl.updateTypeGame(typeGame);
-		}
-
-		@Override
-		public void updateScoreId(String typeGame, int scoreId) {
-				gameRepositoryImpl.updateScoreId(typeGame, scoreId);
-		}
-
-		@Override
-		public void updateScoreIdByTypeGame(String typeGame, int scoreId) {
-				gameRepositoryImpl.updateScoreIdByTypeGame(typeGame, scoreId);
-		}
-
-		@Override
-		public List<Game> getTopGames() {
-				return gameRepositoryImpl.getTopGames();
-		}
 }
