@@ -13,14 +13,14 @@ import java.util.UUID;
 
 public class GameRepositoryImpl
 	implements Repository<Game, Integer> {//porque me pide constructor?
-	private final String TABLE_NAME = "games";
+	private final String TABLE_NAME = "game";
 
 	private final String GET_ALL_QUERY = "SELECT * FROM " + TABLE_NAME;
 
 	private final String GET_QUERY = "SELECT * FROM " + TABLE_NAME + " WHERE id = ?";
 
 	private final String SAVE_QUERY =
-		"INSERT INTO " + TABLE_NAME + " (typeGame) VALUES(?)";
+		"INSERT INTO " + TABLE_NAME + " (type_game) VALUES(?)";
 
 	private final String DELETE_QUERY = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
 
@@ -54,7 +54,7 @@ public class GameRepositoryImpl
 	private Game getGame() throws SQLException {
 		Game game = new Game();
 		game.setId(resultSet.getInt("id"));
-		game.setTypeGame(resultSet.getString("typeGame"));
+		game.setTypeGame(resultSet.getString("type_game"));
 		return game;
 	}
 
