@@ -1,7 +1,15 @@
 package io.github.imecuadorian.logicgame.repositories;
 
-public class ScoreRepositoryImpl {
-	implements Repository<Score, Integer>
+import io.github.imecuadorian.logicgame.database.Database;
+import io.github.imecuadorian.logicgame.model.Score;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.List;
+
+public class ScoreRepositoryImpl
+	implements Repository<Score, Integer> {
 
 	private final String TABLE_NAME = "score";
 
@@ -25,7 +33,27 @@ public class ScoreRepositoryImpl {
 		this.database = database;
 	}
 
-	public List<Score> get
+	@Override
+	public List<Score> getAll() {
+		return List.of();
+	}
 
+	@Override
+	public Score get(final Integer id) {
+		return null;
+	}
 
+	@Override
+	public Score save(final Score entity) {
+		return null;
+	}
+
+	@Override
+	public void delete(final Integer id) {
+
+	}
+
+	public Score getScoreByPlayerID(final int playerId) {
+		return null;
+	}
 }

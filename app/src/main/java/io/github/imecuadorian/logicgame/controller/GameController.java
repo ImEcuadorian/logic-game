@@ -2,9 +2,11 @@ package io.github.imecuadorian.logicgame.controller;
 
 import io.github.imecuadorian.logicgame.model.Game;
 import io.github.imecuadorian.logicgame.services.GameService;
+import lombok.AllArgsConstructor;
 
 import java.util.List;
 
+@AllArgsConstructor
 public class GameController {
 
 	private final GameService gameService;

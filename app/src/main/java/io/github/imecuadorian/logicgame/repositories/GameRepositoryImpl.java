@@ -2,7 +2,6 @@ package io.github.imecuadorian.logicgame.repositories;
 
 import io.github.imecuadorian.logicgame.database.Database;
 import io.github.imecuadorian.logicgame.model.Game;
-import io.github.imecuadorian.logicgame.model.Player;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,11 +9,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
 public class GameRepositoryImpl
 	implements Repository<Game, Integer> {//porque me pide constructor?
-
 	private final String TABLE_NAME = "games";
 
 	private final String GET_ALL_QUERY = "SELECT * FROM " + TABLE_NAME;
@@ -76,7 +74,7 @@ public class GameRepositoryImpl
 	}
 
 	@Override
-	public Player save(final Game game) {
+	public Game save(final Game game) {
 		try {
 			preparedStatement = database.getConnection()
 				                    .prepareStatement(SAVE_QUERY);

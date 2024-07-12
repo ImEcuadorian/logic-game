@@ -1,5 +1,9 @@
 package io.github.imecuadorian.logicgame.services;
 
+import io.github.imecuadorian.logicgame.model.Score;
+
+import java.util.List;
+
 public interface ScoreService {
 
 	List<Score> getAll();
@@ -10,6 +14,6 @@ public interface ScoreService {
 
 	void delete(Integer id);
 
-	Score getScoreByPlayerId(final int player Id);
+	Score getScoreByPlayerId(final int playerId);
 
 }
