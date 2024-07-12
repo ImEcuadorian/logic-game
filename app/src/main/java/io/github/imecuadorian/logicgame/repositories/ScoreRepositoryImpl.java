@@ -17,8 +17,10 @@ public class ScoreRepositoryImpl
 
 	private final String GET_QUERY = "SELECT * FROM " + TABLE_NAME + " WHERE id = ?";
 
-	private final String SAVE_QUERY = "INSERT INTO " + TABLE_NAME + " VALUES (?, ?)";//casteo o
-	// hago algo??
+	private final String SAVE_QUERY = "INSERT INTO " + TABLE_NAME + " (score, level, type_game_id," +
+                                      " " +
+	                                  "player_id" +
+	                                  ") VALUES (?, ?, ?, ?)";//casteo o
 	private final String DELETE_QUERY = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
 
 	private final Database database;
