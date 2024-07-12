@@ -8,6 +8,7 @@ package io.github.imecuadorian.logicgame.views;
 import io.github.imecuadorian.logicgame.controller.DeductiveQuestionController;
 import io.github.imecuadorian.logicgame.helpers.ShuffleQuestion;
 import io.github.imecuadorian.logicgame.model.DeductiveQuestion;
+import io.github.imecuadorian.logicgame.model.Time;
 import io.github.imecuadorian.logicgame.services.DeductiveQuestionService;
 
 import javax.swing.*;
@@ -23,6 +24,7 @@ public class QuestionView
 	 * Creates new form QuestionView
 	 */
 
+	private static final Thread TIME = new Thread(new Time());
 	private final DeductiveQuestionController deductiveQuestionController;
 	private final List<DeductiveQuestion> questions;
 	private final int maxQuestions;
@@ -207,6 +209,7 @@ public class QuestionView
 		} else {
 			resetOptions();
 			loadQuestion();
+			TIME.interrupt();
 		}
 	}
 
@@ -231,6 +234,13 @@ public class QuestionView
 					break;
 			}
 		}
+
+		TIME.start();
+
+		if (!TIME.isAlive()) {
+			TIME.start();
+		}
+
 		return question;
 	}
 
