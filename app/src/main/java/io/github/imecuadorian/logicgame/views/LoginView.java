@@ -34,7 +34,7 @@ public class LoginView
 	private final Database database = new MySQL();
 	private final Repository<DeductiveQuestion,Integer> deductiveQuestionRepository;
 	private final Repository<InductiveQuestion,Integer> inductiveQuestionRepository;
-	private final Repository<Player, Integer> playerIntegerRepository;
+	private final PlayerRepository playerIntegerRepository;
 
 	private final PlayerService playerService;
 

@@ -115,23 +115,190 @@ public class PlayerRepository
 		return Optional.empty();
 	}
 
-	public Player getPlayerByPointsByTypeGame(String username, String typeGame) {
+
+	public Optional<Player> getPlayerByPointsByTypeGame(String username, String typeGame) {
 		try {
 			String query =
-				"SELECT id, username, score_id FROM " + TABLE_NAME + " INNER JOIN scores ON scores" +
-				".id = scores.player_id INNER JOIN games ON scores.type_game_id = games.id WHERE " +
-                "username = '" +
+				"SELECT id, username, score_id FROM " + TABLE_NAME + " INNER JOIN score ON score" +
+				".id = score.player_id INNER JOIN game ON score.type_game_id = game.id WHERE " +
+								"username = '" +
 				username + "' AND type_game = '" + typeGame + "'";
 
 			statement = database.getConnection()
 				            .createStatement();
-			resultSet = statement.executeQuery("");
+			resultSet = statement.executeQuery(query);
 			if (resultSet.next()) {
-				return getPlayer();
+				return Optional.of(getPlayer());
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
-		return null;
+		return Optional.empty();
 	}
+
+	public Optional<Player> getPlayerAllPoints(String username) {
+		try {
+			String query =
+				"SELECT id, username, score_id FROM " + TABLE_NAME + " INNER JOIN score ON score" +
+				".id = score.player_id WHERE username = '" + username + "'";
+
+			statement = database.getConnection()
+				            .createStatement();
+			resultSet = statement.executeQuery(query);
+			if (resultSet.next()) {
+				return Optional.of(getPlayer());
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return Optional.empty();
+	}
+
+	public void updateScoreByTypeGame(String username, String typeGame, int score) {
+		try {
+			String query =
+				"UPDATE score SET score = " + score + " WHERE player_id = (SELECT id FROM " +
+				TABLE_NAME + " WHERE username = '" + username + "') AND type_game_id = (SELECT " +
+				"id FROM game WHERE type_game = '" + typeGame + "')";
+
+			statement = database.getConnection()
+				            .createStatement();
+			statement.executeUpdate(query);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void updateScore(String username, int score) {
+		try {
+			String query =
+				"UPDATE score SET score = " + score + " WHERE player_id = (SELECT id FROM " +
+				TABLE_NAME + " WHERE username = '" + username + "')";
+
+			statement = database.getConnection()
+				            .createStatement();
+			statement.executeUpdate(query);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void updateLevelByTypeGame(String username, String typeGame, int level) {
+		try {
+			String query =
+				"UPDATE score SET level = " + level + " WHERE player_id = (SELECT id FROM " +
+				TABLE_NAME + " WHERE username = '" + username + "') AND type_game_id = (SELECT " +
+				"id FROM game WHERE type_game = '" + typeGame + "')";
+
+			statement = database.getConnection()
+				            .createStatement();
+			statement.executeUpdate(query);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void updateLevel(String username, int level) {
+		try {
+			String query =
+				"UPDATE score SET level = " + level + " WHERE player_id = (SELECT id FROM " +
+				TABLE_NAME + " WHERE username = '" + username + "')";
+
+			statement = database.getConnection()
+				            .createStatement();
+			statement.executeUpdate(query);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void updateTypeGame(String username, String typeGame) {
+		try {
+			String query =
+				"UPDATE score SET type_game_id = (SELECT id FROM game WHERE type_game = '" +
+				typeGame + "') WHERE player_id = (SELECT id FROM " + TABLE_NAME + " WHERE username = '" + username + "')";
+
+			statement = database.getConnection()
+				            .createStatement();
+			statement.executeUpdate(query);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void updateScoreId(String username, int scoreId) {
+		try {
+			String query =
+				"UPDATE " + TABLE_NAME + " SET score_id = " + scoreId + " WHERE username = '" +
+				username + "'";
+
+			statement = database.getConnection()
+				            .createStatement();
+			statement.executeUpdate(query);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void updateScoreIdByTypeGame(String username, String typeGame, int scoreId) {
+		try {
+			String query =
+				"UPDATE " + TABLE_NAME + " SET score_id = " + scoreId + " WHERE username = '" +
+				username + "' AND score_id = (SELECT id FROM score WHERE player_id = (SELECT id " +
+				"FROM " + TABLE_NAME + " WHERE username = '" + username + "') AND type_game_id = " +
+				"(SELECT id FROM game WHERE type_game = '" + typeGame + "'))";
+
+			statement = database.getConnection()
+				            .createStatement();
+			statement.executeUpdate(query);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public List<Player> getTopPlayersByTypeGame(String typeGame) {
+		List<Player> players = new ArrayList<>();
+		try {
+			String query =
+				"SELECT username, score FROM " + TABLE_NAME + " INNER JOIN score ON score" +
+				".id = score.player_id INNER JOIN game ON score.type_game_id = game.id WHERE " +
+				"type_game = '" + typeGame + "' ORDER BY score DESC LIMIT 10";
+
+			statement = database.getConnection()
+				            .createStatement();
+			resultSet = statement.executeQuery(query);
+			while (resultSet.next()) {
+				Player player = new Player();
+				player.setUsername(resultSet.getString("username"));
+				player.setScoreId(resultSet.getInt("score"));
+				players.add(player);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return players;
+	}
+
+	public List<Player> getTopPlayers() {
+		List<Player> players = new ArrayList<>();
+		try {
+			String query =
+				"SELECT username, score FROM " + TABLE_NAME + " INNER JOIN score ON score" +
+				".id = score.player_id ORDER BY score DESC LIMIT 10";
+
+			statement = database.getConnection()
+				            .createStatement();
+			resultSet = statement.executeQuery(query);
+			while (resultSet.next()) {
+				Player player = new Player();
+				player.setUsername(resultSet.getString("username"));
+				player.setScoreId(resultSet.getInt("score"));
+				players.add(player);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return players;
+	}
+
 }
