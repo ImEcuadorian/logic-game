@@ -70,7 +70,7 @@ public class GameRepositoryImpl
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
-		return null;//porque null?  manejo direccion dememoria?
+		return null;
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class GameRepositoryImpl
 		try {
 			preparedStatement = database.getConnection()
 				                    .prepareStatement(SAVE_QUERY);
-			preparedStatement.setString(1, game.getTypeGame());//porque parametro 1?
+			preparedStatement.setString(1, game.getTypeGame());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -91,6 +91,7 @@ public class GameRepositoryImpl
 		try {
 			preparedStatement = database.getConnection()
 				                    .prepareStatement(DELETE_QUERY);
+			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

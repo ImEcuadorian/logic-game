@@ -103,6 +103,7 @@ public class DeductiveQuestionRepositoryImpl
 			preparedStatement = database.getConnection()
 				                 .prepareStatement(DELETE_QUERY);
 			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

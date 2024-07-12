@@ -94,6 +94,7 @@ public class InductiveQuestionRepositoryImpl
 			preparedStatement.setString(4, entity.getConclusion());
 			preparedStatement.setString(5, entity.getOptions());
 			preparedStatement.setString(6, entity.getCorrectOption());
+			preparedStatement.executeUpdate();
 			return entity;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -106,6 +107,7 @@ public class InductiveQuestionRepositoryImpl
 			preparedStatement = database.getConnection()
 				                    .prepareStatement(DELETE_QUERY);
 			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
