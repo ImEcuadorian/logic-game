@@ -12,7 +12,7 @@ import io.github.imecuadorian.logicgame.model.InductiveQuestion;
 import io.github.imecuadorian.logicgame.model.Player;
 import io.github.imecuadorian.logicgame.repositories.DeductiveQuestionRepositoryImpl;
 import io.github.imecuadorian.logicgame.repositories.InductiveQuestionRepositoryImpl;
-import io.github.imecuadorian.logicgame.repositories.PlayerRepository;
+import io.github.imecuadorian.logicgame.repositories.PlayerRepositoryImpl;
 import io.github.imecuadorian.logicgame.repositories.Repository;
 import io.github.imecuadorian.logicgame.services.PlayerService;
 import io.github.imecuadorian.logicgame.services.PlayerServiceImpl;
@@ -34,7 +34,7 @@ public class LoginView
 	private final Database database = new MySQL();
 	private final Repository<DeductiveQuestion,Integer> deductiveQuestionRepository;
 	private final Repository<InductiveQuestion,Integer> inductiveQuestionRepository;
-	private final PlayerRepository playerIntegerRepository;
+	private final PlayerRepositoryImpl playerIntegerRepository;
 
 	private final PlayerService playerService;
 
@@ -44,7 +44,7 @@ public class LoginView
 		database.setup();
 		deductiveQuestionRepository = new DeductiveQuestionRepositoryImpl(database);
 		inductiveQuestionRepository = new InductiveQuestionRepositoryImpl(database);
-		playerIntegerRepository = new PlayerRepository(database);
+		playerIntegerRepository = new PlayerRepositoryImpl(database);
 		playerService = new PlayerServiceImpl(playerIntegerRepository);
 		loadPlaceHolders();
 	}
