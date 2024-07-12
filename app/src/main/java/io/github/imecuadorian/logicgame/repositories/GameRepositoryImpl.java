@@ -1,4 +1,4 @@
 package io.github.imecuadorian.logicgame.repositories;
 
-public class GameRepository {
+public class GameRepositoryImpl {
 }
