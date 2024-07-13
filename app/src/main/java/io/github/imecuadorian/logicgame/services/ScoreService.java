@@ -14,6 +14,4 @@ public interface ScoreService {
 
 	void delete(Integer id);
 
-	Score getScoreByPlayerId(final int playerId);
-
 }

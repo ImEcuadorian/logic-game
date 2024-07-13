@@ -10,10 +10,12 @@ import io.github.imecuadorian.logicgame.database.MySQL;
 import io.github.imecuadorian.logicgame.model.DeductiveQuestion;
 import io.github.imecuadorian.logicgame.model.InductiveQuestion;
 import io.github.imecuadorian.logicgame.model.Player;
+import io.github.imecuadorian.logicgame.model.Score;
 import io.github.imecuadorian.logicgame.repositories.DeductiveQuestionRepositoryImpl;
 import io.github.imecuadorian.logicgame.repositories.InductiveQuestionRepositoryImpl;
 import io.github.imecuadorian.logicgame.repositories.PlayerRepositoryImpl;
 import io.github.imecuadorian.logicgame.repositories.Repository;
+import io.github.imecuadorian.logicgame.repositories.ScoreRepositoryImpl;
 import io.github.imecuadorian.logicgame.services.PlayerService;
 import io.github.imecuadorian.logicgame.services.PlayerServiceImpl;
 import io.github.imecuadorian.logicgame.utilities.TextPrompt;
@@ -34,6 +36,8 @@ public class LoginView
 	private final Database database = new MySQL();
 	private final Repository<DeductiveQuestion,Integer> deductiveQuestionRepository;
 	private final Repository<InductiveQuestion,Integer> inductiveQuestionRepository;
+
+	private final Repository<Score, Integer> scoreRepository;
 	private final PlayerRepositoryImpl playerIntegerRepository;
 
 	private final PlayerService playerService;
@@ -46,6 +50,7 @@ public class LoginView
 		inductiveQuestionRepository = new InductiveQuestionRepositoryImpl(database);
 		playerIntegerRepository = new PlayerRepositoryImpl(database);
 		playerService = new PlayerServiceImpl(playerIntegerRepository);
+		scoreRepository = new ScoreRepositoryImpl(database);
 		loadPlaceHolders();
 	}
 
@@ -169,7 +174,8 @@ public class LoginView
 
 
 		PrincipalForm principalForm = new PrincipalForm(deductiveQuestionRepository,
-		                                                inductiveQuestionRepository, playerService, player);
+		                                                inductiveQuestionRepository, playerService,
+		                                                player, scoreRepository);
 		principalForm.setVisible(true);
 		this.dispose();
 	}                                           

@@ -1,6 +1,7 @@
 package io.github.imecuadorian.logicgame.repositories;
 
 import io.github.imecuadorian.logicgame.database.Database;
+import io.github.imecuadorian.logicgame.model.Player;
 import io.github.imecuadorian.logicgame.model.Score;
 
 import java.sql.PreparedStatement;
@@ -23,7 +24,7 @@ public class ScoreRepositoryImpl
                                       " " +
 	                                  "player_id" +
 	                                  ") VALUES (?, ?, ?, ?)";
-	private final String DELETE_QUERY = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
+  	private final String DELETE_QUERY = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
 
 	private final Database database;
 
@@ -83,11 +84,27 @@ public class ScoreRepositoryImpl
 		try {
 			preparedStatement = database.getConnection().prepareStatement(SAVE_QUERY);
 			preparedStatement.setInt(1, entity.getScore());
+			preparedStatement.setInt(2, entity.getLevel());
+			preparedStatement.setInt(3, entity.getTypeGameId());
+			preparedStatement.setInt(4, entity.getPlayerId());
+
+			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 
 		return entity;
+	}
+
+	public void update(int idPlayer, int score) {
+		try {
+			preparedStatement = database.getConnection().prepareStatement("UPDATE " + TABLE_NAME + " SET score = ? WHERE player_id = ?");
+			preparedStatement.setInt(1, score);
+			preparedStatement.setInt(2, idPlayer);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override

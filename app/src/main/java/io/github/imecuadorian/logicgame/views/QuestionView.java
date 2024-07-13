@@ -8,8 +8,13 @@ package io.github.imecuadorian.logicgame.views;
 import io.github.imecuadorian.logicgame.controller.DeductiveQuestionController;
 import io.github.imecuadorian.logicgame.helpers.ShuffleQuestion;
 import io.github.imecuadorian.logicgame.model.DeductiveQuestion;
+import io.github.imecuadorian.logicgame.model.Player;
+import io.github.imecuadorian.logicgame.model.Score;
 import io.github.imecuadorian.logicgame.model.Time;
 import io.github.imecuadorian.logicgame.services.DeductiveQuestionService;
+import io.github.imecuadorian.logicgame.services.PlayerService;
+import io.github.imecuadorian.logicgame.services.ScoreService;
+import io.github.imecuadorian.logicgame.services.ScoreServiceImpl;
 
 import javax.swing.*;
 import java.util.List;
@@ -23,16 +28,23 @@ public class QuestionView
 	/**
 	 * Creates new form QuestionView
 	 */
-
-	private static final Thread TIME = new Thread(new Time());
 	private final DeductiveQuestionController deductiveQuestionController;
+	private final PlayerService playerService;
+
+	private final ScoreService scoreService;
+	private final Player player;
 	private final List<DeductiveQuestion> questions;
 	private final int maxQuestions;
+
+	private int points = 0;
 
 	public QuestionView(
 		java.awt.Frame parent,
 		boolean modal,
-		DeductiveQuestionService deductiveQuestionService
+		DeductiveQuestionService deductiveQuestionService,
+		PlayerService playerService,
+		Player player,
+		ScoreService scoreService
 	) {
 		super(parent, modal);
 		initComponents();
@@ -41,7 +53,9 @@ public class QuestionView
 		this.questions = (List<DeductiveQuestion>) ShuffleQuestion.shuffleQuestions(
 			deductiveQuestionController.getAll());
 		this.maxQuestions = deductiveQuestionController.getSize();
-
+		this.playerService = playerService;
+		this.player = player;
+		this.scoreService = scoreService;
 		if (maxQuestions == 0) {
 			JOptionPane.showMessageDialog(this, "There are no questions available");
 			this.dispose();
@@ -176,7 +190,7 @@ public class QuestionView
 
 	private void nextQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 		// :event_nextQuestionButtonActionPerformed
-
+		resetOptions();
 		if (!firstOptionRadioButton.isSelected() && !secondOptionRadioButton.isSelected() &&
 		    !thirdOptionRadioButton.isSelected()) {
 			JOptionPane.showMessageDialog(this, "Please select an option");
@@ -188,28 +202,33 @@ public class QuestionView
 			selectedOption = firstOptionRadioButton.getText();
 		} else if (secondOptionRadioButton.isSelected()) {
 			selectedOption = secondOptionRadioButton.getText();
-		} else if (thirdOptionRadioButton.isSelected()) {
+		} else {
 			selectedOption = thirdOptionRadioButton.getText();
 		}
 		DeductiveQuestion question = questions.getFirst();
 
 		if (question.getCorrectOption()
 			    .equals(selectedOption)) {
-			JOptionPane.showMessageDialog(this, "Correct!");
 			resetOptions();
+			JOptionPane.showMessageDialog(this, "Correct!");
+			points++;
 		} else {
+			resetOptions();
 			JOptionPane.showMessageDialog(this, "Incorrect!");
 			JOptionPane.showMessageDialog(this, "Explanation: " + question.getExplanation());
-			resetOptions();
 		}
 
 		questions.removeFirst();
 		if (questions.isEmpty()) {
 			this.dispose();
+			Score score = new Score();
+			score.setPlayerId(player.getId());
+			score.setTypeGameId(1);
+			score.setScore(points);
+			((ScoreServiceImpl) scoreService).update(player, points);
 		} else {
 			resetOptions();
 			loadQuestion();
-			TIME.interrupt();
 		}
 	}
 
@@ -235,11 +254,6 @@ public class QuestionView
 			}
 		}
 
-		TIME.start();
-
-		if (!TIME.isAlive()) {
-			TIME.start();
-		}
 
 		return question;
 	}

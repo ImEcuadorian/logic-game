@@ -8,12 +8,15 @@ package io.github.imecuadorian.logicgame.views;
 import io.github.imecuadorian.logicgame.model.DeductiveQuestion;
 import io.github.imecuadorian.logicgame.model.InductiveQuestion;
 import io.github.imecuadorian.logicgame.model.Player;
+import io.github.imecuadorian.logicgame.model.Score;
 import io.github.imecuadorian.logicgame.repositories.Repository;
 import io.github.imecuadorian.logicgame.services.DeductiveQuestionService;
 import io.github.imecuadorian.logicgame.services.DeductiveQuestionServiceImpl;
 import io.github.imecuadorian.logicgame.services.InductiveQuestionService;
 import io.github.imecuadorian.logicgame.services.InductiveQuestionServiceImpl;
 import io.github.imecuadorian.logicgame.services.PlayerService;
+import io.github.imecuadorian.logicgame.services.ScoreService;
+import io.github.imecuadorian.logicgame.services.ScoreServiceImpl;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,16 +35,15 @@ public class PrincipalForm
 
 	private final DeductiveQuestionService deductiveQuestionService;
 	private final InductiveQuestionService inductiveQuestionService;
-
+	private final ScoreService scoreService;
 	private final PlayerService playerService;
-
 	private Player player;
-
 	public PrincipalForm(
 		Repository<DeductiveQuestion, Integer> deductiveQuestionRepository,
 		Repository<InductiveQuestion, Integer> inductiveQuestionRepository,
 		PlayerService playerService,
-		Player player
+		Player player,
+		Repository<Score, Integer> scoreRepository
 	) {
 		initComponents();
 		this.deductiveQuestionService =
@@ -50,6 +52,7 @@ public class PrincipalForm
 			new InductiveQuestionServiceImpl(inductiveQuestionRepository);
 		this.playerService = playerService;
 		this.player = player;
+		this.scoreService = new ScoreServiceImpl(scoreRepository);
 		loadPlayerName();
 		this.setLocationRelativeTo(null);
 	}
@@ -319,7 +322,8 @@ public class PrincipalForm
 	private void playDeductiveButtonActionPerformed(ActionEvent evt) {//GEN-FIRST
 		// :event_playDeductiveButtonActionPerformed
 		// TODO add your handling code here:
-		QuestionView deductiveView = new QuestionView(this, true, deductiveQuestionService);
+		QuestionView deductiveView = new QuestionView(this, true, deductiveQuestionService,
+		                                              playerService, player, scoreService);
 		deductiveView.setVisible(true);
 	}                                                   
 
