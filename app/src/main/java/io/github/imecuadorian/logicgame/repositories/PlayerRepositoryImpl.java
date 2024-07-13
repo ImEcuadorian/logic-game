@@ -282,7 +282,8 @@ public class PlayerRepositoryImpl
         List<Player> players = new ArrayList<>();
         try {
             String query =
-                    "SELECT username, score FROM " + TABLE_NAME + " INNER JOIN score ON score .id = score.player_id ORDER BY score DESC LIMIT 10";
+                    "SELECT username, score_id FROM " + TABLE_NAME + " INNER JOIN score ON score " +
+                    ".id = score.player_id ORDER BY score DESC LIMIT 10";
 
             statement = database.getConnection()
                     .createStatement();
