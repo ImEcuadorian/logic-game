@@ -254,22 +254,5 @@ public class QuestionInductiveView
     private javax.swing.JRadioButton thirdOptionRadioButton;
     // End of variables declaration//GEN-END:variables
 
-	class BackGroundInductivePanel
-		extends JPanel {
-
-		private Image image;
-
-		@Override
-		public void paint(Graphics g) {
-			image =
-				new ImageIcon(getClass().getResource("/icons/backgroundImgs" +
-				                                     "/background_principalForm.jpg")).getImage();
-
-			g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
-
-			setOpaque(false);
-
-			super.paint(g);
-		}
-	}
+	
 }

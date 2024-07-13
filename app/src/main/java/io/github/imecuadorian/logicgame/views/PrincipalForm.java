@@ -234,6 +234,11 @@ public class PrincipalForm
         playerName2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         playerName2.setForeground(new java.awt.Color(255, 255, 255));
         playerName2.setText("RANKING");
+        playerName2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                playerName2MouseClicked(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icon_idea_96px.png"))); // NOI18N
 
@@ -326,6 +331,12 @@ public class PrincipalForm
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void playerName2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playerName2MouseClicked
+        // TODO add your handling code here:
+        CreditView credits = new CreditView();
+        credits.setVisible(true);
+    }//GEN-LAST:event_playerName2MouseClicked
 
 	private void playDeductiveButtonActionPerformed(ActionEvent evt) {//GEN-FIRST
 		// :event_playDeductiveButtonActionPerformed

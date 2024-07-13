@@ -226,7 +226,18 @@ public class LoginView
 		});
 	}
 
-	class BackGroundPanel extends JPanel {
+	
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton startButton;
+    private javax.swing.JTextField usernameTextField;
+    // End of variables declaration//GEN-END:variables
+        
+}
+
+class BackGroundPanel extends JPanel {
 		private Image image;
 
 		@Override
@@ -242,11 +253,3 @@ public class LoginView
 		}
 
 	}
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton startButton;
-    private javax.swing.JTextField usernameTextField;
-    // End of variables declaration//GEN-END:variables
-}
