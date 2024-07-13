@@ -17,7 +17,6 @@ import io.github.imecuadorian.logicgame.services.ScoreService;
 import io.github.imecuadorian.logicgame.services.ScoreServiceImpl;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.List;
 
 /**
@@ -57,6 +56,7 @@ public class QuestionView
 		this.playerService = playerService;
 		this.player = player;
 		this.scoreService = scoreService;
+		pointsLabel.setText("Points: " + points);
 		if (maxQuestions == 0) {
 			JOptionPane.showMessageDialog(this, "There are no questions available");
 			this.dispose();
@@ -74,153 +74,122 @@ public class QuestionView
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jPanel1 = new javax.swing.JPanel();
-        nextQuestionButton = new javax.swing.JButton();
+        secondPremiseLabel = new javax.swing.JLabel();
+        thirdPremiseLabel = new javax.swing.JLabel();
+        firstPremiseLabel = new javax.swing.JLabel();
         firstOptionRadioButton = new javax.swing.JRadioButton();
         secondOptionRadioButton = new javax.swing.JRadioButton();
         thirdOptionRadioButton = new javax.swing.JRadioButton();
-        jPanel2 = new javax.swing.JPanel();
-        liveLabel5 = new javax.swing.JLabel();
-        liveLabel6 = new javax.swing.JLabel();
-        liveLabel7 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        thirdPremiseLabel = new javax.swing.JLabel();
-        secondPremiseLabel = new javax.swing.JLabel();
-        firstPremiseLabel = new javax.swing.JLabel();
+        nextQuestionButton = new javax.swing.JButton();
+        pointsLabel = new javax.swing.JLabel();
+        liveLabel4 = new javax.swing.JLabel();
+        liveLabel2 = new javax.swing.JLabel();
+        liveLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(new javax.swing.OverlayLayout(getContentPane()));
 
-        jPanel1.setBackground(new java.awt.Color(54, 0, 51));
+        secondPremiseLabel.setText("jLabel1");
 
-        nextQuestionButton.setBackground(new java.awt.Color(54, 0, 51));
-        nextQuestionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/deductiveIcons/icons_ok_hand_question_view_100px.png"))); // NOI18N
-        nextQuestionButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        nextQuestionButton.setBorderPainted(false);
+        thirdPremiseLabel.setText("jLabel1");
+
+        firstPremiseLabel.setText("jLabel1");
+
+        buttonGroup1.add(firstOptionRadioButton);
+        firstOptionRadioButton.setText("jRadioButton1");
+
+        buttonGroup1.add(secondOptionRadioButton);
+        secondOptionRadioButton.setText("jRadioButton2");
+
+        buttonGroup1.add(thirdOptionRadioButton);
+        thirdOptionRadioButton.setText("jRadioButton3");
+
+        nextQuestionButton.setText("Siguiente");
         nextQuestionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextQuestionButtonActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(firstOptionRadioButton);
-        firstOptionRadioButton.setForeground(new java.awt.Color(255, 255, 255));
-        firstOptionRadioButton.setText("jRadioButton1");
+        pointsLabel.setText("Puntos:");
 
-        buttonGroup1.add(secondOptionRadioButton);
-        secondOptionRadioButton.setForeground(new java.awt.Color(255, 255, 255));
-        secondOptionRadioButton.setText("jRadioButton2");
+        liveLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hearth_icon_50px.png"))); // NOI18N
 
-        buttonGroup1.add(thirdOptionRadioButton);
-        thirdOptionRadioButton.setForeground(new java.awt.Color(255, 255, 255));
-        thirdOptionRadioButton.setText("jRadioButton3");
+        liveLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hearth_icon_50px.png"))); // NOI18N
 
-        jPanel2.setBackground(new java.awt.Color(54, 0, 51));
+        liveLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hearth_icon_50px.png"))); // NOI18N
 
-        liveLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hearth_icon_50px.png"))); // NOI18N
-
-        liveLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hearth_icon_50px.png"))); // NOI18N
-
-        liveLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hearth_icon_50px.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(liveLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(liveLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(liveLabel7)
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(liveLabel7)
-                    .addComponent(liveLabel5)
-                    .addComponent(liveLabel6))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/deductiveIcons/icon_whale_100px.png"))); // NOI18N
-
-        thirdPremiseLabel.setForeground(new java.awt.Color(255, 255, 255));
-        thirdPremiseLabel.setText("jLabel1");
-
-        secondPremiseLabel.setForeground(new java.awt.Color(255, 255, 255));
-        secondPremiseLabel.setText("jLabel1");
-
-        firstPremiseLabel.setForeground(new java.awt.Color(255, 255, 255));
-        firstPremiseLabel.setText("jLabel1");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(firstPremiseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 328, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(secondPremiseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(thirdPremiseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(secondOptionRadioButton)
-                            .addComponent(firstOptionRadioButton)
-                            .addComponent(thirdOptionRadioButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(nextQuestionButton)
-                        .addGap(66, 66, 66))))
+                        .addGap(103, 103, 103))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(liveLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(liveLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(liveLabel3)
+                        .addGap(38, 38, 38))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(secondPremiseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(thirdPremiseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(136, 136, 136)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(thirdOptionRadioButton)
+                                    .addComponent(secondOptionRadioButton)
+                                    .addComponent(firstOptionRadioButton)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(pointsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(firstPremiseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(83, 83, 83)
-                .addComponent(firstPremiseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(pointsLabel)
+                .addGap(76, 76, 76)
                 .addComponent(secondPremiseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(thirdPremiseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(firstOptionRadioButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(secondOptionRadioButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(thirdOptionRadioButton))
-                    .addComponent(nextQuestionButton))
-                .addGap(84, 84, 84))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(liveLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(liveLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(liveLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addComponent(firstOptionRadioButton)
+                .addGap(40, 40, 40)
+                .addComponent(secondOptionRadioButton)
+                .addGap(51, 51, 51)
+                .addComponent(thirdOptionRadioButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(nextQuestionButton)
+                .addGap(53, 53, 53))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(62, 62, 62)
+                    .addComponent(firstPremiseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(501, Short.MAX_VALUE)))
         );
-
-        getContentPane().add(jPanel1);
 
         pack();
         setLocationRelativeTo(null);
@@ -228,14 +197,13 @@ public class QuestionView
 
 	private void nextQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 		// :event_nextQuestionButtonActionPerformed
-		resetOptions();
 		if (!firstOptionRadioButton.isSelected() && !secondOptionRadioButton.isSelected() &&
 		    !thirdOptionRadioButton.isSelected()) {
 			JOptionPane.showMessageDialog(this, "Please select an option");
 			return;
 		}
 
-		String selectedOption = "";
+		String selectedOption;
 		if (firstOptionRadioButton.isSelected()) {
 			selectedOption = firstOptionRadioButton.getText();
 		} else if (secondOptionRadioButton.isSelected()) {
@@ -248,16 +216,34 @@ public class QuestionView
 		if (question.getCorrectOption()
 			    .equals(selectedOption)) {
 			resetOptions();
-			JOptionPane.showMessageDialog(this, "Correct!");
 			points++;
+			pointsLabel.setText("Points: " + points);
 		} else {
 			resetOptions();
-			JOptionPane.showMessageDialog(this, "Incorrect!");
-			JOptionPane.showMessageDialog(this, "Explanation: " + question.getExplanation());
+			player.reduceLife();
+			if (player.getLIFE() == 2) {
+				liveLabel4.setVisible(false);
+			} else if (player.getLIFE() == 1) {
+				liveLabel3.setVisible(false);
+			} else {
+				liveLabel2.setVisible(false);
+			}
+			if (!checkHasLives()) {
+				JOptionPane.showMessageDialog(this, "Game Over");
+				JOptionPane.showMessageDialog(this, "Points: " + points);
+				this.dispose();
+				Score score = new Score();
+				score.setPlayerId(player.getId());
+				score.setTypeGameId(1);
+				score.setScore(points);
+				((ScoreServiceImpl) scoreService).update(player, points);
+			}
 		}
 
 		questions.removeFirst();
 		if (questions.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "Congratulations, you have completed the game!");
+			JOptionPane.showMessageDialog(this, "Points: " + points + " of " + maxQuestions);
 			this.dispose();
 			Score score = new Score();
 			score.setPlayerId(player.getId());
@@ -297,24 +283,22 @@ public class QuestionView
 	}
 
 	private void resetOptions() {
-		firstOptionRadioButton.setSelected(false);
-		secondOptionRadioButton.setSelected(false);
-		thirdOptionRadioButton.setSelected(false);
+		buttonGroup1.clearSelection();
 	}
 
-	
+	private boolean checkHasLives() {
+		return player.getLIFE() > 0;
+	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton firstOptionRadioButton;
     private javax.swing.JLabel firstPremiseLabel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel liveLabel5;
-    private javax.swing.JLabel liveLabel6;
-    private javax.swing.JLabel liveLabel7;
+    private javax.swing.JLabel liveLabel2;
+    private javax.swing.JLabel liveLabel3;
+    private javax.swing.JLabel liveLabel4;
     private javax.swing.JButton nextQuestionButton;
+    private javax.swing.JLabel pointsLabel;
     private javax.swing.JRadioButton secondOptionRadioButton;
     private javax.swing.JLabel secondPremiseLabel;
     private javax.swing.JRadioButton thirdOptionRadioButton;

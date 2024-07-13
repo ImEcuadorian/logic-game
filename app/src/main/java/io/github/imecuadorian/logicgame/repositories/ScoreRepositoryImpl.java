@@ -118,7 +118,16 @@ public class ScoreRepositoryImpl
 		}
 	}
 
-	public Score getScoreByPlayerID(final int playerId) {
+	public Score getScoreByPlayerIdAndGameType(final int playerId, final int gameType) {
+		try {
+			statement = database.getConnection().createStatement();
+			resultSet = statement.executeQuery("SELECT * FROM " + TABLE_NAME + " WHERE player_id = " + playerId + " AND type_game_id = " + gameType);
+			if(resultSet.next()) {
+				return getScore();
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 		return null;
 	}
 }

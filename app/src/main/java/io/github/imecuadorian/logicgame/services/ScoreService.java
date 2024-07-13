@@ -13,5 +13,5 @@ public interface ScoreService {
 	Score save(Score entity);
 
 	void delete(Integer id);
-
+	Score getScoreByPlayerIdAndGameType(int playerId, int gameType);
 }

@@ -9,7 +9,7 @@ import lombok.Setter;
 
 public class Player implements Model {
 
-	private static final byte LIFE = 3;
+	private byte LIFE = 3;
 	private int id;
 	private String username;
 	private int scoreId;
@@ -19,4 +19,9 @@ public class Player implements Model {
 
 	public Player() {
 	}
+
+	public byte reduceLife() {
+		return --LIFE;
+	}
+
 }
