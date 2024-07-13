@@ -4,6 +4,8 @@
  */
 package io.github.imecuadorian.logicgame.views;
 
+import io.github.imecuadorian.logicgame.services.PlayerService;
+
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -17,10 +19,10 @@ public class CreditView extends javax.swing.JFrame {
     /**
      * Creates new form CreditView
      */
+
+
     public CreditView() {
         initComponents();
-        
- 
     }
 
     /**

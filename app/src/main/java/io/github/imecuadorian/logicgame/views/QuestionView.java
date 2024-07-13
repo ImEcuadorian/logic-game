@@ -56,6 +56,7 @@ public class QuestionView
 		this.playerService = playerService;
 		this.player = player;
 		this.scoreService = scoreService;
+		player.setLIFE((byte) 3);
 		pointsLabel.setText("Points: " + points);
 		if (maxQuestions == 0) {
 			JOptionPane.showMessageDialog(this, "There are no questions available");

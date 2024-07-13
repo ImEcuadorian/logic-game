@@ -4,6 +4,11 @@
  */
 package io.github.imecuadorian.logicgame.views;
 
+import io.github.imecuadorian.logicgame.model.Player;
+import io.github.imecuadorian.logicgame.services.PlayerService;
+
+import java.util.List;
+
 /**
  *
  * @author Jossue Proano
@@ -13,9 +18,15 @@ public class RankingView extends javax.swing.JDialog {
     /**
      * Creates new form RankingView
      */
-    public RankingView(java.awt.Frame parent, boolean modal) {
+		private final PlayerService playerService;
+		private final List<Player> players;
+
+    public RankingView(java.awt.Frame parent, boolean modal, PlayerService playerService) {
         super(parent, modal);
         initComponents();
+				this.playerService = playerService;
+				players = playerService.getTopPlayers();
+				loadTable();
     }
 
     /**
@@ -80,46 +91,11 @@ public class RankingView extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RankingView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RankingView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RankingView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RankingView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                RankingView dialog = new RankingView(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
+    private void loadTable(){
+				for (int i = 0; i < players.size(); i++) {
+						jTable1.setValueAt(players.get(i).getUsername(), i, 0);
+						jTable1.setValueAt(players.get(i).getScoreId(), i, 1);
+				}
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

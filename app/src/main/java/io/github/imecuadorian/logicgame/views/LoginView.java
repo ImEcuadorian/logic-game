@@ -167,7 +167,7 @@ public class LoginView
 
 		if (player.getId() == 0) {
 			player.setUsername(username);
-			playerService.save(player);
+			 player = playerService.save(player);
 		}
 
 

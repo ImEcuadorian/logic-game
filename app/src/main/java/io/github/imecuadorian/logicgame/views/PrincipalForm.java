@@ -230,6 +230,11 @@ public class PrincipalForm
         playerName1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         playerName1.setForeground(new java.awt.Color(255, 255, 255));
         playerName1.setText("CREDITOS");
+        playerName1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                playerName1MouseClicked(evt);
+            }
+        });
 
         playerName2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         playerName2.setForeground(new java.awt.Color(255, 255, 255));
@@ -334,9 +339,15 @@ public class PrincipalForm
 
     private void playerName2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playerName2MouseClicked
         // TODO add your handling code here:
-        CreditView credits = new CreditView();
-        credits.setVisible(true);
+        RankingView rankingView = new RankingView(this, true, playerService);
+				rankingView.setVisible(true);
     }//GEN-LAST:event_playerName2MouseClicked
+
+    private void playerName1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playerName1MouseClicked
+        // TODO add your handling code here:
+	    CreditView credits = new CreditView();
+	    credits.setVisible(true);
+    }//GEN-LAST:event_playerName1MouseClicked
 
 	private void playDeductiveButtonActionPerformed(ActionEvent evt) {//GEN-FIRST
 		// :event_playDeductiveButtonActionPerformed
@@ -344,7 +355,8 @@ public class PrincipalForm
 		QuestionView deductiveView = new QuestionView(this, true, deductiveQuestionService,
 		                                              playerService, player, scoreService);
 		deductiveView.setVisible(true);
-	}                                                   
+		loadPointsLabel();
+	}
 
 	private void playInductiveButtonActionPerformed(ActionEvent evt) {//GEN-FIRST
 		// :event_playInductiveButtonActionPerformed
@@ -357,6 +369,23 @@ public class PrincipalForm
 	}
 
 	private void loadPointsLabel(){
+		Score score = scoreService.getScoreByPlayerIdAndGameType(player.getId(), 1);
+
+		if (score == null){
+			score = new Score();
+			score.setScore(0);
+			score.setLevel(1);
+			score.setPlayerId(player.getId());
+			score.setTypeGameId(1);
+			scoreService.save(score);
+			Score score2 = new Score();
+			score2.setScore(0);
+			score2.setLevel(1);
+			score2.setPlayerId(player.getId());
+			score2.setTypeGameId(2);
+			scoreService.save(score2);
+		}
+
 		deductivePlayerPointsLabel.setText("PUNTOS : " + scoreService.getScoreByPlayerIdAndGameType(player.getId(), 1).getScore());
 	}
 

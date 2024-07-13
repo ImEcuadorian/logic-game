@@ -281,9 +281,10 @@ public class PlayerRepositoryImpl
     public List<Player> getTopPlayers() {
         List<Player> players = new ArrayList<>();
         try {
-            String query =
-                    "SELECT username, score_id FROM " + TABLE_NAME + " INNER JOIN score ON score " +
-                    ".id = score.player_id ORDER BY score DESC LIMIT 10";
+            String query = "SELECT score, username FROM `logic-game`.score INNER JOIN `logic-game`" +
+                           ".players ON " +
+										"players.id = score.player_id ORDER BY score DESC LIMIT 10";
+
 
             statement = database.getConnection()
                     .createStatement();
