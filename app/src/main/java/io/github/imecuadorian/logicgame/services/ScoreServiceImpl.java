@@ -25,4 +25,8 @@ public class ScoreServiceImpl implements ScoreService {
 
 	public void delete(Integer id) { scoreRepository.delete(id); }
 
+	@Override
+	public Score getScoreByPlayerIdAndGameType(final int playerId, final int gameType) {
+		return ((ScoreRepositoryImpl) scoreRepository).getScoreByPlayerIdAndGameType(playerId, gameType);
+	}
 }

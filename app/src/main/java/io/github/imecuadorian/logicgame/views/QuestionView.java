@@ -203,7 +203,7 @@ public class QuestionView
 			return;
 		}
 
-		String selectedOption = "";
+		String selectedOption;
 		if (firstOptionRadioButton.isSelected()) {
 			selectedOption = firstOptionRadioButton.getText();
 		} else if (secondOptionRadioButton.isSelected()) {
@@ -242,8 +242,8 @@ public class QuestionView
 
 		questions.removeFirst();
 		if (questions.isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Game Over");
-			JOptionPane.showMessageDialog(this, "Points: " + points);
+			JOptionPane.showMessageDialog(this, "Congratulations, you have completed the game!");
+			JOptionPane.showMessageDialog(this, "Points: " + points + " of " + maxQuestions);
 			this.dispose();
 			Score score = new Score();
 			score.setPlayerId(player.getId());

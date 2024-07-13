@@ -54,6 +54,7 @@ public class PrincipalForm
 		this.player = player;
 		this.scoreService = new ScoreServiceImpl(scoreRepository);
 		loadPlayerName();
+		loadPointsLabel();
 		this.setLocationRelativeTo(null);
 	}
 
@@ -84,6 +85,7 @@ public class PrincipalForm
         jLabel2 = new javax.swing.JLabel();
         playerName = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        deductivePlayerPointsLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -267,6 +269,8 @@ public class PrincipalForm
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icon_mental_96px.png"))); // NOI18N
 
+        deductivePlayerPointsLabel.setText("jLabel4");
+
         javax.swing.GroupLayout backgroundPrincipalFormLayout = new javax.swing.GroupLayout(backgroundPrincipalForm);
         backgroundPrincipalForm.setLayout(backgroundPrincipalFormLayout);
         backgroundPrincipalFormLayout.setHorizontalGroup(
@@ -275,15 +279,17 @@ public class PrincipalForm
                 .addComponent(dashBoardjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(backgroundPrincipalFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backgroundPrincipalFormLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(backgroundPrincipalFormLayout.createSequentialGroup()
                         .addGap(145, 145, 145)
                         .addComponent(jLabel3)
                         .addGap(38, 38, 38)
-                        .addComponent(playerName, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(playerName, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(backgroundPrincipalFormLayout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(backgroundPrincipalFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(deductivePlayerPointsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         backgroundPrincipalFormLayout.setVerticalGroup(
@@ -297,7 +303,9 @@ public class PrincipalForm
                     .addGroup(backgroundPrincipalFormLayout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addComponent(playerName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(77, 77, 77)
+                .addGap(43, 43, 43)
+                .addComponent(deductivePlayerPointsLabel)
+                .addGap(18, 18, 18)
                 .addGroup(backgroundPrincipalFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -335,7 +343,11 @@ public class PrincipalForm
 			true,
 			inductiveQuestionService);
 		inductiveView.setVisible(true);
-	}                                                   
+	}
+
+	private void loadPointsLabel(){
+		deductivePlayerPointsLabel.setText("PUNTOS : " + scoreService.getScoreByPlayerIdAndGameType(player.getId(), 1).getScore());
+	}
 
 	private void loadPlayerName() {
 		playerName.setText("NOMBRE JUGADOR : " + player.getUsername());
@@ -344,6 +356,7 @@ public class PrincipalForm
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPrincipalForm;
     private javax.swing.JPanel dashBoardjPanel;
+    private javax.swing.JLabel deductivePlayerPointsLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
