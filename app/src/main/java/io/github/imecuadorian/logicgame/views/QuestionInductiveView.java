@@ -10,8 +10,10 @@ import io.github.imecuadorian.logicgame.controller.InductiveQuestionController;
 import io.github.imecuadorian.logicgame.helpers.ShuffleQuestion;
 import io.github.imecuadorian.logicgame.model.DeductiveQuestion;
 import io.github.imecuadorian.logicgame.model.InductiveQuestion;
+import io.github.imecuadorian.logicgame.model.Player;
 import io.github.imecuadorian.logicgame.services.DeductiveQuestionService;
 import io.github.imecuadorian.logicgame.services.InductiveQuestionService;
+import io.github.imecuadorian.logicgame.services.ScoreService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,13 +31,21 @@ public class QuestionInductiveView
 	 */
 
 	private final InductiveQuestionController inductiveQuestionController;
+
+	private final ScoreService scoreService;
 	private final List<InductiveQuestion> questions;
+
+	private final Player player;
 	private final int maxQuestions;
+
+	private int points = 0;
 
 	public QuestionInductiveView(
 		java.awt.Frame parent,
 		boolean modal,
-		InductiveQuestionService inductiveQuestionService
+		InductiveQuestionService inductiveQuestionService,
+		ScoreService scoreService,
+		Player player
 	) {
 		super(parent, modal);
 		initComponents();
@@ -44,7 +54,17 @@ public class QuestionInductiveView
 		this.questions = (List<InductiveQuestion>) ShuffleQuestion.shuffleQuestions(
 			inductiveQuestionController.getAll());
 		this.maxQuestions = inductiveQuestionController.getSize();
-		loadQuestion();
+		this.scoreService = scoreService;
+		this.player = player;
+		player.setLIFE((byte) 3);
+
+		if (questions.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "No questions available");
+			this.dispose();
+		}		else {
+			loadQuestion();
+		}
+
 	}
 
 	/**
@@ -202,6 +222,30 @@ public class QuestionInductiveView
 
 	private void nextQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 		// :event_nextQuestionButtonActionPerformed
+
+		if(!firstOptionRadioButton.isSelected() && !secondOptionRadioButton.isSelected() && !thirdOptionRadioButton.isSelected()){
+			JOptionPane.showMessageDialog(this, "Please select an option");
+			return;
+		}
+
+		InductiveQuestion question = questions.getFirst();
+		String correctAnswer = question.getCorrectOption();
+		String selectedAnswer = "";
+		if (firstOptionRadioButton.isSelected()) {
+			selectedAnswer = firstOptionRadioButton.getText();
+		} else if (secondOptionRadioButton.isSelected()) {
+			selectedAnswer = secondOptionRadioButton.getText();
+		} else if (thirdOptionRadioButton.isSelected()) {
+			selectedAnswer = thirdOptionRadioButton.getText();
+		}
+
+		if (correctAnswer.equals(selectedAnswer)) {
+			points++;
+		} else {
+			player.setLIFE((byte) (player.getLIFE() - 1));
+		}
+
+
 		questions.removeFirst();
 		if (questions.isEmpty()) {
 			this.dispose();

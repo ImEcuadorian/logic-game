@@ -19,5 +19,5 @@ public class GameController {
 
 	public void delete(Integer id) { gameService.delete(id); }
 
-	public int getsize() { return getAllGames().size(); }
+	public int getSize() { return getAllGames().size(); }
 }
