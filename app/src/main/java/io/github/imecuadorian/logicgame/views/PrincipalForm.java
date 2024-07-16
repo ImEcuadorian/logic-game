@@ -493,7 +493,7 @@ public class PrincipalForm
 	private void playerName1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST
 		// :event_playerName1MouseClicked
 		// TODO add your handling code here:
-		CreditView credits = new CreditView();
+		CreditView credits = new CreditView(this, true);
 		credits.setVisible(true);
 	}//GEN-LAST:event_playerName1MouseClicked
 
