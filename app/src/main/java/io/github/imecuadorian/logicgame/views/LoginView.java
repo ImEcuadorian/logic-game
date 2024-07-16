@@ -243,7 +243,7 @@ class BackGroundPanel extends JPanel {
 		@Override
 		public void paint(Graphics g)
 		{
-			image =	new ImageIcon(getClass().getResource("/icons/backgroundImgs/background_login.png")).getImage();
+			image =	new ImageIcon(getClass().getResource("/icons/backgroundImgs/logo_background_client.png")).getImage();
 
 			g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 
