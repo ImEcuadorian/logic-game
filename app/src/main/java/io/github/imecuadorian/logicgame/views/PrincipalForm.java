@@ -282,6 +282,7 @@ public class PrincipalForm
         deductivePlayerPointsLabel.setFont(new java.awt.Font("Showcard Gothic", 2, 14)); // NOI18N
         deductivePlayerPointsLabel.setText("jLabel4");
 
+        inductivePlayersPointsLabel.setFont(new java.awt.Font("Showcard Gothic", 2, 14)); // NOI18N
         inductivePlayersPointsLabel.setText("jLabel4");
 
         javax.swing.GroupLayout backgroundPrincipalFormLayout = new javax.swing.GroupLayout(backgroundPrincipalForm);

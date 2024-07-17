@@ -164,6 +164,7 @@ public class QuestionInductiveView
             }
         });
 
+        pointsLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         pointsLabel.setText("Puntos:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);

@@ -271,7 +271,8 @@ class BackGroundPanel
 
 	@Override
 	public void paint(Graphics g) {
-		image = new ImageIcon(getClass().getResource("/icons/backgroundImgs/background_login.png")).getImage();
+		image =
+			new ImageIcon(getClass().getResource("/icons/backgroundImgs/background_login_client.png")).getImage();
 
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 
