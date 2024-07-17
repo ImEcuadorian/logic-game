@@ -132,38 +132,31 @@ public class QuestionInductiveView
         );
 
         firstObservation.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        firstObservation.setForeground(new java.awt.Color(0, 0, 0));
         firstObservation.setText("jLabel1");
 
         secondObservationLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        secondObservationLabel.setForeground(new java.awt.Color(0, 0, 0));
         secondObservationLabel.setText("jLabel1");
 
         thirdObservationLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        thirdObservationLabel.setForeground(new java.awt.Color(0, 0, 0));
         thirdObservationLabel.setText("jLabel1");
 
         icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/inductiveIcons/question_1/icons8-sol-96.png"))); // NOI18N
 
         buttonGroup1.add(firstOptionRadioButton);
         firstOptionRadioButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        firstOptionRadioButton.setForeground(new java.awt.Color(0, 0, 0));
         firstOptionRadioButton.setText("jRadioButton1");
 
         buttonGroup1.add(secondOptionRadioButton);
         secondOptionRadioButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        secondOptionRadioButton.setForeground(new java.awt.Color(0, 0, 0));
         secondOptionRadioButton.setText("jRadioButton2");
 
         buttonGroup1.add(thirdOptionRadioButton);
         thirdOptionRadioButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        thirdOptionRadioButton.setForeground(new java.awt.Color(0, 0, 0));
         thirdOptionRadioButton.setText("jRadioButton3");
 
         nextQuestionButton.setBackground(new java.awt.Color(240, 194, 123));
         nextQuestionButton.setForeground(new java.awt.Color(240, 194, 123));
         nextQuestionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/inductiveIcons/icon_ok_hand_100px.png"))); // NOI18N
-        nextQuestionButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         nextQuestionButton.setBorderPainted(false);
         nextQuestionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,6 +233,7 @@ public class QuestionInductiveView
         getContentPane().add(jPanel3);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
 	private void nextQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST

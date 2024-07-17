@@ -12,8 +12,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 import java.util.List;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  * @author Jossue Proano
@@ -46,7 +45,7 @@ public class RankingView
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable1 = new JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -56,10 +55,15 @@ public class RankingView
         setResizable(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
             new String [] {
                 "Jugador", "Puntaje"
-            },
-            15
+            }
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.Integer.class
@@ -131,6 +135,7 @@ public class RankingView
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
 	private void loadTable() {
@@ -143,7 +148,7 @@ public class RankingView
 		}
 	}
 
-	class BackGroundRanking
+	static class BackGroundRanking
 		extends JPanel {
 
 		private Image image;
