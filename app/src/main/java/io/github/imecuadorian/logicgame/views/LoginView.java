@@ -197,11 +197,13 @@ public class LoginView
 
 		Player player = playerService.getPlayerByUsername(username);
 
-		if (player == null) {
-			player = new Player();
-			player.setUsername(username);
-			player = playerService.save(player);
+		if (player.getId() == 0){
+			Player player1 = new Player();
+			player1.setUsername(username);
+			playerService.save(player1);
 		}
+
+		player = playerService.getPlayerByUsername(username);
 
 		PrincipalForm principalForm = new PrincipalForm(deductiveQuestionRepository,
 		                                                inductiveQuestionRepository, playerService,
@@ -271,10 +273,6 @@ class BackGroundPanel
 
 	@Override
 	public void paint(Graphics g) {
-		image =
-			new ImageIcon(getClass().getResource("/icons/backgroundImgs/background_login_client.png")).getImage();
-
-		g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 
 		setOpaque(false);
 

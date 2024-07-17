@@ -383,19 +383,25 @@ public class PrincipalForm
 	private void loadPointsLabel() {
 		Score score = scoreService.getScoreByPlayerIdAndGameType(player.getId(), 1);
 
+		System.out.println(score);
+
 		if (score == null) {
 			score = new Score();
 			score.setScore(0);
 			score.setLevel(1);
 			score.setPlayerId(player.getId());
 			score.setTypeGameId(1);
-			scoreService.save(score);
+			System.out.println(score);
 			Score score2 = new Score();
 			score2.setScore(0);
 			score2.setLevel(1);
 			score2.setPlayerId(player.getId());
 			score2.setTypeGameId(2);
+			scoreService.save(score);
 			scoreService.save(score2);
+		} else {
+			score.setLevel(1);
+			scoreService.save(score);
 		}
 
 		deductivePlayerPointsLabel.setText("PUNTOS : " +

@@ -3,10 +3,11 @@ package io.github.imecuadorian.logicgame.model;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
-
+@ToString
 public class Player implements Model {
 
 	private byte LIFE = 3;

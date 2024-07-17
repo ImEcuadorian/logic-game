@@ -79,7 +79,7 @@ public class PlayerRepositoryImpl
     public Player save(final Player entity) {
         try {
             preparedStatement = database.getConnection()
-                    .prepareStatement(SAVE_QUERY, Statement.RETURN_GENERATED_KEYS);
+                    .prepareStatement(SAVE_QUERY);
             preparedStatement.setString(1, entity.getUsername());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
