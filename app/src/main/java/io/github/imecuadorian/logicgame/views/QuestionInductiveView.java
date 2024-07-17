@@ -91,6 +91,8 @@ public class QuestionInductiveView
         nextQuestionButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1050, 600));
+        setResizable(false);
         getContentPane().setLayout(new javax.swing.OverlayLayout(getContentPane()));
 
         jPanel3.setBackground(new java.awt.Color(240, 194, 123));
@@ -127,21 +129,33 @@ public class QuestionInductiveView
                 .addContainerGap())
         );
 
+        firstObservation.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        firstObservation.setForeground(new java.awt.Color(0, 0, 0));
         firstObservation.setText("jLabel1");
 
+        secondObservationLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        secondObservationLabel.setForeground(new java.awt.Color(0, 0, 0));
         secondObservationLabel.setText("jLabel1");
 
+        thirdObservationLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        thirdObservationLabel.setForeground(new java.awt.Color(0, 0, 0));
         thirdObservationLabel.setText("jLabel1");
 
         icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/inductiveIcons/question_1/icons8-sol-96.png"))); // NOI18N
 
         buttonGroup1.add(firstOptionRadioButton);
+        firstOptionRadioButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        firstOptionRadioButton.setForeground(new java.awt.Color(0, 0, 0));
         firstOptionRadioButton.setText("jRadioButton1");
 
         buttonGroup1.add(secondOptionRadioButton);
+        secondOptionRadioButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        secondOptionRadioButton.setForeground(new java.awt.Color(0, 0, 0));
         secondOptionRadioButton.setText("jRadioButton2");
 
         buttonGroup1.add(thirdOptionRadioButton);
+        thirdOptionRadioButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        thirdOptionRadioButton.setForeground(new java.awt.Color(0, 0, 0));
         thirdOptionRadioButton.setText("jRadioButton3");
 
         nextQuestionButton.setBackground(new java.awt.Color(240, 194, 123));
@@ -160,9 +174,9 @@ public class QuestionInductiveView
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(icon1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 334, Short.MAX_VALUE)
+                .addGap(133, 133, 133)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -183,21 +197,21 @@ public class QuestionInductiveView
                     .addComponent(thirdOptionRadioButton)
                     .addComponent(secondOptionRadioButton)
                     .addComponent(firstOptionRadioButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 411, Short.MAX_VALUE)
                 .addComponent(nextQuestionButton)
                 .addGap(111, 111, 111))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(icon1))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(icon1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(firstObservation, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(secondObservationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,7 +226,7 @@ public class QuestionInductiveView
                         .addGap(18, 18, 18)
                         .addComponent(thirdOptionRadioButton))
                     .addComponent(nextQuestionButton))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3);

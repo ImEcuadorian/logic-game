@@ -72,6 +72,8 @@ public class LoginView
         setResizable(false);
         setSize(new java.awt.Dimension(100, 100));
 
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         jLabel1.setFont(new java.awt.Font("Roboto Condensed", 1, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/login_blue_icon_96px.png"))); // NOI18N
@@ -251,5 +253,6 @@ class BackGroundPanel extends JPanel {
 
 			super.paint(g);
 		}
-
+	
 	}
+

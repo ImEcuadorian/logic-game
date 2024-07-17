@@ -103,19 +103,23 @@ public class QuestionView
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1050, 600));
         getContentPane().setLayout(new javax.swing.OverlayLayout(getContentPane()));
 
         jPanel2.setBackground(new java.awt.Color(59, 23, 66));
 
         buttonGroup1.add(firstOptionRadioButton);
+        firstOptionRadioButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         firstOptionRadioButton.setForeground(new java.awt.Color(255, 255, 255));
         firstOptionRadioButton.setText("jRadioButton1");
 
         buttonGroup1.add(secondOptionRadioButton);
+        secondOptionRadioButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         secondOptionRadioButton.setForeground(new java.awt.Color(255, 255, 255));
         secondOptionRadioButton.setText("jRadioButton2");
 
         buttonGroup1.add(thirdOptionRadioButton);
+        thirdOptionRadioButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         thirdOptionRadioButton.setForeground(new java.awt.Color(255, 255, 255));
         thirdOptionRadioButton.setText("jRadioButton3");
 
@@ -129,15 +133,19 @@ public class QuestionView
             }
         });
 
+        thirdPremiseLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         thirdPremiseLabel.setForeground(new java.awt.Color(255, 255, 255));
         thirdPremiseLabel.setText("jLabel1");
 
+        secondPremiseLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         secondPremiseLabel.setForeground(new java.awt.Color(255, 255, 255));
         secondPremiseLabel.setText("jLabel1");
 
+        firstPremiseLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         firstPremiseLabel.setForeground(new java.awt.Color(255, 255, 255));
         firstPremiseLabel.setText("jLabel1");
 
+        pointsLabel.setFont(new java.awt.Font("MS Gothic", 3, 18)); // NOI18N
         pointsLabel.setForeground(new java.awt.Color(255, 255, 255));
         pointsLabel.setText("Puntos:");
 
