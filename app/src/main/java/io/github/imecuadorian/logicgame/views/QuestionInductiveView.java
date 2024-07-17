@@ -11,9 +11,11 @@ import io.github.imecuadorian.logicgame.helpers.ShuffleQuestion;
 import io.github.imecuadorian.logicgame.model.DeductiveQuestion;
 import io.github.imecuadorian.logicgame.model.InductiveQuestion;
 import io.github.imecuadorian.logicgame.model.Player;
+import io.github.imecuadorian.logicgame.model.Score;
 import io.github.imecuadorian.logicgame.services.DeductiveQuestionService;
 import io.github.imecuadorian.logicgame.services.InductiveQuestionService;
 import io.github.imecuadorian.logicgame.services.ScoreService;
+import io.github.imecuadorian.logicgame.services.ScoreServiceImpl;
 
 import javax.swing.*;
 import java.awt.*;
@@ -89,9 +91,9 @@ public class QuestionInductiveView
         secondOptionRadioButton = new javax.swing.JRadioButton();
         thirdOptionRadioButton = new javax.swing.JRadioButton();
         nextQuestionButton = new javax.swing.JButton();
+        pointsLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1050, 600));
         setResizable(false);
         getContentPane().setLayout(new javax.swing.OverlayLayout(getContentPane()));
 
@@ -169,12 +171,16 @@ public class QuestionInductiveView
             }
         });
 
+        pointsLabel.setText("Puntos:");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(pointsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(icon1)
                 .addGap(133, 133, 133)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,7 +216,9 @@ public class QuestionInductiveView
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(icon1)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pointsLabel)
+                            .addComponent(icon1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(firstObservation, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -255,15 +263,46 @@ public class QuestionInductiveView
 
 		if (correctAnswer.equals(selectedAnswer)) {
 			points++;
+			resetOptions();
+			pointsLabel.setText("Puntos: " + points);
 		} else {
-			player.setLIFE((byte) (player.getLIFE() - 1));
+			player.reduceLife();
+			if (player.getLIFE() == 2) {
+				liveLabel3.setVisible(false);
+			} else if (player.getLIFE() == 1) {
+				liveLabel2.setVisible(false);
+			} else if (player.getLIFE() == 0) {
+				liveLabel4.setVisible(false);
+				JOptionPane.showMessageDialog(this, "Game Over");
+				this.dispose();
+			}
+
+			if(!checkHasLives()){
+				JOptionPane.showMessageDialog(this, "Game Over");
+				this.dispose();
+				Score score = new Score();
+				score.setScore(points);
+				score.setLevel(maxQuestions);
+				score.setPlayerId(player.getId());
+				score.setTypeGameId(2);
+				((ScoreServiceImpl) scoreService).update(player, points);
+			}
+
 		}
 
 
 		questions.removeFirst();
 		if (questions.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "Congratulations, you have completed the game");
+			Score score = new Score();
+			score.setScore(points);
+			score.setLevel(maxQuestions);
+			score.setPlayerId(player.getId());
+			score.setTypeGameId(2);
+			((ScoreServiceImpl) scoreService).update(player, points);
 			this.dispose();
 		} else {
+			resetOptions();
 			loadQuestion();
 		}
 	}
@@ -295,6 +334,14 @@ public class QuestionInductiveView
 		}
 	}
 
+	private void resetOptions(){
+		buttonGroup1.clearSelection();
+	}
+
+	private boolean checkHasLives() {
+		return player.getLIFE() > 0;
+	}
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel firstObservation;
@@ -306,6 +353,7 @@ public class QuestionInductiveView
     private javax.swing.JLabel liveLabel3;
     private javax.swing.JLabel liveLabel4;
     private javax.swing.JButton nextQuestionButton;
+    private javax.swing.JLabel pointsLabel;
     private javax.swing.JLabel secondObservationLabel;
     private javax.swing.JRadioButton secondOptionRadioButton;
     private javax.swing.JLabel thirdObservationLabel;

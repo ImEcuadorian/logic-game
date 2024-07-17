@@ -85,6 +85,7 @@ public class PrincipalForm
         playerName = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         deductivePlayerPointsLabel = new javax.swing.JLabel();
+        inductivePlayersPointsLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -281,6 +282,8 @@ public class PrincipalForm
         deductivePlayerPointsLabel.setFont(new java.awt.Font("Showcard Gothic", 2, 14)); // NOI18N
         deductivePlayerPointsLabel.setText("jLabel4");
 
+        inductivePlayersPointsLabel.setText("jLabel4");
+
         javax.swing.GroupLayout backgroundPrincipalFormLayout = new javax.swing.GroupLayout(backgroundPrincipalForm);
         backgroundPrincipalForm.setLayout(backgroundPrincipalFormLayout);
         backgroundPrincipalFormLayout.setHorizontalGroup(
@@ -299,7 +302,9 @@ public class PrincipalForm
                             .addComponent(deductivePlayerPointsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(backgroundPrincipalFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inductivePlayersPointsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         backgroundPrincipalFormLayout.setVerticalGroup(
@@ -313,8 +318,10 @@ public class PrincipalForm
                     .addGroup(backgroundPrincipalFormLayout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addComponent(playerName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(43, 43, 43)
-                .addComponent(deductivePlayerPointsLabel)
+                .addGap(42, 42, 42)
+                .addGroup(backgroundPrincipalFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deductivePlayerPointsLabel)
+                    .addComponent(inductivePlayersPointsLabel))
                 .addGap(18, 18, 18)
                 .addGroup(backgroundPrincipalFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -394,6 +401,19 @@ public class PrincipalForm
 		                                   scoreService.getScoreByPlayerIdAndGameType(player.getId()
 				                                   , 1)
 			                                   .getScore());
+		Score score2 = scoreService.getScoreByPlayerIdAndGameType(player.getId(), 2);
+		if (score2 == null) {
+			score2 = new Score();
+			score2.setScore(0);
+			score2.setLevel(1);
+			score2.setPlayerId(player.getId());
+			score2.setTypeGameId(2);
+			scoreService.save(score2);
+		}
+		inductivePlayersPointsLabel.setText("PUNTOS : " +
+		                                    scoreService.getScoreByPlayerIdAndGameType(player.getId()
+				                                    , 2)
+			                                    .getScore());
 	}
 
 	private void loadPlayerName() {
@@ -404,6 +424,7 @@ public class PrincipalForm
     private javax.swing.JPanel backgroundPrincipalForm;
     private javax.swing.JPanel dashBoardjPanel;
     private javax.swing.JLabel deductivePlayerPointsLabel;
+    private javax.swing.JLabel inductivePlayersPointsLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

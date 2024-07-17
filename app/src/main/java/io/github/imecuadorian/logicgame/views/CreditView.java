@@ -59,7 +59,7 @@ public class CreditView extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("Segoe Print", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Hugo Saldarriaga");
+        jLabel3.setText("Lina Zapata\n Hugo Saldarriaga \n Jossue Proaño");
 
         jLabel4.setFont(new java.awt.Font("Segoe Print", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));

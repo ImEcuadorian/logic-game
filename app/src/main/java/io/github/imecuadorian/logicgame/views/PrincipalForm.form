@@ -80,7 +80,10 @@
                               <Component id="jPanel5" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+                              <Component id="inductivePlayersPointsLabel" min="-2" pref="158" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace pref="43" max="32767" attributes="0"/>
@@ -101,8 +104,11 @@
                           <Component id="playerName" min="-2" pref="43" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                  <Component id="deductivePlayerPointsLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="deductivePlayerPointsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="inductivePlayersPointsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
@@ -425,6 +431,11 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Showcard Gothic" size="14" style="2"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="jLabel4"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="inductivePlayersPointsLabel">
+          <Properties>
             <Property name="text" type="java.lang.String" value="jLabel4"/>
           </Properties>
         </Component>
